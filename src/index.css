@@ -127,6 +127,8 @@
     --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
     --shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
   }
+}
+
 @layer base {
   * {
     @apply border-border;
