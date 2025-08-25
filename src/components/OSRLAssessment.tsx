@@ -90,9 +90,60 @@ export function OSRLAssessment() {
           </CardHeader>
           
           <CardContent className="space-y-8">
+            {/* O que é O-SRL */}
             <div className="bg-gradient-secondary rounded-xl p-6 border">
               <h3 className="text-xl font-semibold mb-4 text-foreground">
-                Por que Processos Maduros Importam?
+                O que é o Framework O-SRL?
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                O <strong className="text-primary">Organizational Strategic Readiness Level (O-SRL)</strong> é um framework 
+                de avaliação de maturidade organizacional que mede a capacidade de uma organização em executar estratégias 
+                complexas de forma consistente e previsível.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Baseado em 9 níveis progressivos, o O-SRL avalia desde organizações com processos caóticos e imprevisíveis 
+                até aquelas com agilidade estratégica total, passando por estágios de estruturação, padronização, 
+                integração e otimização contínua.
+              </p>
+            </div>
+
+            {/* Os 9 Níveis */}
+            <div className="bg-gradient-secondary rounded-xl p-6 border">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">
+                Os 9 Níveis de Maturidade Organizacional
+              </h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="space-y-3">
+                  <h4 className="font-medium text-destructive">Níveis Iniciais (1-3)</h4>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div><strong>1. Inicial:</strong> Processos caóticos</div>
+                    <div><strong>2. Consciente:</strong> Processos fragmentados</div>
+                    <div><strong>3. Estruturado:</strong> Processos repetíveis</div>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <h4 className="font-medium text-warning">Níveis Intermediários (4-6)</h4>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div><strong>4. Definido:</strong> Processos padronizados</div>
+                    <div><strong>5. Integrado:</strong> Processos institucionalizados</div>
+                    <div><strong>6. Gerenciado:</strong> Medido quantitativamente</div>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <h4 className="font-medium text-success">Níveis Avançados (7-9)</h4>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div><strong>7. Preditivo:</strong> Controlado quantitativamente</div>
+                    <div><strong>8. Otimizado:</strong> Melhoria contínua</div>
+                    <div><strong>9. Adaptativo:</strong> Agilidade estratégica</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Por que Importa */}
+            <div className="bg-gradient-secondary rounded-xl p-6 border">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">
+                Por que a Maturidade Organizacional Importa?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 O sucesso na execução de estratégias complexas depende de processos robustos. 
