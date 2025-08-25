@@ -453,155 +453,155 @@ export const QUESTIONS: Question[] = [
 export const OSRL_LEVELS: OSRLLevel[] = [
   {
     level: 1,
-    name: "Inicial - Processos Ad Hoc",
-    description: "Organização com processos imprevisíveis, mal controlados e reativos.",
+    name: "Inicial (Ad-hoc & Caótico)",
+    description: "Os processos são imprevisíveis, mal controlados e reativos. O sucesso depende inteiramente de esforços individuais heróicos, não de capacidades organizacionais.",
     characteristics: [
-      "Processos não documentados ou inexistentes",
-      "Decisões tomadas de forma reativa e ad-hoc", 
-      "Falta de visibilidade sobre progresso e resultados",
-      "Silos organizacionais com pouca colaboração"
+      "Processos imprevisíveis e mal controlados",
+      "Sucesso depende de esforços individuais heróicos",
+      "Não consegue repetir sucessos consistentemente",
+      "Ausência de capacidades organizacionais estruturadas"
     ],
     recommendations: [
-      "Documentar processos críticos existentes",
-      "Estabelecer métricas básicas de acompanhamento",
-      "Criar estrutura mínima de governança",
-      "Implementar comunicação regular entre equipes"
+      "Iniciar documentação de processos básicos existentes",
+      "Identificar e mapear fluxos de trabalho críticos",
+      "Estabelecer métricas mínimas de controle",
+      "Criar estrutura básica de comunicação entre equipes"
     ]
   },
   {
     level: 2,
-    name: "Repetível - Processos Básicos",
-    description: "Organização com alguns processos básicos repetíveis, mas ainda inconsistentes.",
+    name: "Consciente (Processos Fragmentados)",
+    description: "Existe uma consciência básica sobre a gestão de projetos, mas os processos são aplicados de forma inconsistente, geralmente dentro de silos funcionais.",
     characteristics: [
-      "Alguns processos documentados e seguidos ocasionalmente",
-      "Controles básicos de projeto implementados",
-      "Sucessos podem ser repetidos em projetos similares",
-      "Disciplina de processo em desenvolvimento"
+      "Consciência básica sobre gestão de projetos",
+      "Processos aplicados inconsistentemente",
+      "Trabalho executado dentro de silos funcionais",
+      "Iniciativas executadas de maneira reativa"
     ],
     recommendations: [
-      "Padronizar processos existentes",
-      "Treinar equipes nos processos definidos",
-      "Estabelecer templates e ferramentas básicas",
-      "Criar métricas de qualidade e prazo"
+      "Padronizar processos básicos de gestão de projetos",
+      "Quebrar silos funcionais com projetos transversais",
+      "Estabelecer vocabulário comum de gestão",
+      "Criar templates básicos para projetos similares"
     ]
   },
   {
     level: 3,
-    name: "Definido - Processos Padronizados",
-    description: "Organização com processos documentados, padronizados e compreendidos.",
+    name: "Estruturado (Processos Repetíveis)",
+    description: "Processos centrais de gestão de projetos são documentados e podem ser repetidos no nível do projeto. Existe um acompanhamento básico de custo e cronograma.",
     characteristics: [
-      "Processos organizacionais bem definidos",
-      "Projetos adaptam processos padrão às suas necessidades",
-      "Treinamento formal em processos organizacionais",
-      "Coleta consistente de dados de processo"
+      "Processos documentados e repetíveis no nível do projeto",
+      "Acompanhamento básico de custo e cronograma",
+      "Sucessos podem ser repetidos em projetos similares",
+      "Disciplina de processo em desenvolvimento"
     ],
     recommendations: [
-      "Implementar gestão de portfólio básica",
-      "Estabelecer framework de governança integrado",
-      "Desenvolver competências em gestão de mudança",
-      "Criar sistema de lições aprendidas"
+      "Documentar e formalizar processos em toda organização",
+      "Implementar controles básicos de qualidade",
+      "Criar sistema de lições aprendidas",
+      "Estabelecer métricas padrão de desempenho"
     ]
   },
   {
     level: 4,
-    name: "Gerenciado - Processos Controlados",
-    description: "Organização com processos quantitativamente medidos e controlados.",
+    name: "Definido (Processos Padronizados)",
+    description: "Um conjunto de processos padrão para toda a organização é definido e disponibilizado para uso em todos os projetos. A organização adota uma postura mais proativa do que reativa.",
     characteristics: [
-      "Métricas detalhadas coletadas sobre processos",
-      "Qualidade e performance de processo quantificadas",
-      "Processos estáveis e previsíveis",
-      "Gestão baseada em dados objetivos"
+      "Processos padrão definidos para toda organização",
+      "Processos bem caracterizados e compreendidos",
+      "Postura proativa em vez de reativa",
+      "Treinamento formal em processos organizacionais"
     ],
     recommendations: [
-      "Implementar PPM (Project Portfolio Management) robusto",
-      "Desenvolver capacidades de análise preditiva",
-      "Integrar sistemas de gestão de valor",
-      "Estabelecer centros de excelência"
+      "Implementar visão básica de Gestão de Portfólio (PPM)",
+      "Alinhar processos de projetos com estratégia organizacional",
+      "Estabelecer governança integrada de projetos",
+      "Desenvolver competências em gestão de mudança"
     ]
   },
   {
     level: 5,
-    name: "Otimizado - Melhoria Contínua",
-    description: "Organização focada na melhoria contínua de processos através de inovação.",
+    name: "Integrado (Processos Institucionalizados)",
+    description: "Os processos padrão são totalmente institucionalizados e integrados com outras funções corporativas. Uma visão de portfólio começa a emergir, permitindo um alinhamento mais amplo dos projetos com a estratégia.",
     characteristics: [
-      "Melhoria contínua através de feedback e inovação",
-      "Processos otimizados para eficiência máxima",
-      "Prevenção de defeitos e problemas",
-      "Tecnologia utilizada para automação"
+      "Processos institucionalizados e integrados",
+      "Integração com funções corporativas (finanças, RH)",
+      "Visão de portfólio emergente",
+      "Alinhamento amplo de projetos com estratégia"
     ],
     recommendations: [
-      "Implementar automação inteligente de processos",
-      "Desenvolver capacidades de transformação digital",
-      "Estabelecer cultura de inovação sistemática",
-      "Criar parcerias estratégicas para co-inovação"
+      "Implementar PPM (Project Portfolio Management) robusto",
+      "Integrar sistemas de gestão de valor e benefícios",
+      "Criar mecanismos de compartilhamento de conhecimento",
+      "Estabelecer centros de excelência em gestão"
     ]
   },
   {
     level: 6,
-    name: "Integrado - Ecosistema Colaborativo",
-    description: "Organização com processos totalmente integrados e colaborativos.",
+    name: "Gerenciado (Medido Quantitativamente)",
+    description: "A organização coleta e utiliza dados quantitativos para gerenciar o desempenho e a qualidade dos projetos. As decisões são cada vez mais baseadas em dados.",
     characteristics: [
-      "Processos integrados end-to-end",
-      "Colaboração seamless entre todas as áreas",
-      "Stakeholders engajados como parceiros",
-      "Gestão holística de valor organizacional"
+      "Coleta e uso de dados quantitativos sistemáticos",
+      "Decisões baseadas em dados objetivos",
+      "Objetivos quantitativos para qualidade e desempenho",
+      "Gestão quantitativa de processos"
     ],
     recommendations: [
-      "Desenvolver capacidades de orquestração de ecossistema",
-      "Implementar inteligência artificial para otimização",
-      "Criar plataformas de co-criação com stakeholders",
-      "Estabelecer governança de rede distribuída"
+      "Desenvolver capacidades avançadas de análise de dados",
+      "Implementar dashboards executivos em tempo real",
+      "Criar modelos preditivos para gestão de projetos",
+      "Otimizar processos baseado em análise quantitativa"
     ]
   },
   {
     level: 7,
-    name: "Inteligente - Processos Cognitivos",
-    description: "Organização com processos aumentados por inteligência artificial e machine learning.",
+    name: "Preditivo (Controlado Quantitativamente)",
+    description: "Técnicas estatísticas e quantitativas são usadas para controlar processos e prever resultados de desempenho. A organização pode prever de forma confiável os resultados dos projetos.",
     characteristics: [
-      "IA e ML integrados aos processos de decisão",
-      "Processos auto-otimizantes",
-      "Análise preditiva sistemática",
-      "Automação inteligente generalizada"
+      "Uso de técnicas estatísticas para controle",
+      "Previsão confiável de resultados de projetos",
+      "Modelos estatísticos baseados em dados históricos",
+      "Controle quantitativo sistemático de processos"
     ],
     recommendations: [
-      "Expandir capacidades de IA para todos os processos",
-      "Desenvolver sistemas de aprendizado organizacional",
-      "Criar digital twins organizacionais",
-      "Implementar processos autônomos avançados"
+      "Implementar análise preditiva avançada",
+      "Desenvolver modelos de machine learning para otimização",
+      "Criar simulações e cenários para tomada de decisão",
+      "Estabelecer controles estatísticos de processo"
     ]
   },
   {
     level: 8,
-    name: "Autônomo - Sistemas Auto-Geridos",
-    description: "Organização com sistemas largamente autônomos e auto-geridos.",
+    name: "Otimizado (Melhoria Contínua)",
+    description: "A organização está focada na melhoria contínua dos processos, identificando e abordando as causas comuns de variação e desvio de desempenho. A inovação em processos é incentivada e gerenciada.",
     characteristics: [
-      "Sistemas auto-organizativos",
-      "Tomada de decisão distribuída e inteligente",
-      "Adaptação automática a mudanças",
-      "Minimal human intervention requerida"
+      "Foco sistemático em melhoria contínua",
+      "Identificação de causas de variação e desvios",
+      "Inovação em processos incentivada e gerenciada",
+      "Prevenção proativa de problemas"
     ],
     recommendations: [
-      "Desenvolver governança para sistemas autônomos",
-      "Criar safeguards e controles éticos",
-      "Estabelecer supervisão humana estratégica",
-      "Preparar para transformação do papel humano"
+      "Implementar automação inteligente de processos",
+      "Desenvolver cultura de inovação sistemática",
+      "Criar laboratórios de experimentação organizacional",
+      "Estabelecer redes de colaboração externa"
     ]
   },
   {
     level: 9,
-    name: "Adaptativo - Organização Viva",
-    description: "Organização que evolui continuamente como um organismo vivo adaptativo.",
+    name: "Adaptativo (Agilidade Estratégica)",
+    description: "Os processos estáveis e otimizados da organização fornecem uma plataforma para agilidade e inovação estratégica. A organização pode pivotar e responder a oportunidades e ameaças de forma eficaz, integrando perfeitamente a estratégia e a execução.",
     characteristics: [
-      "Evolução contínua e emergente",
-      "Capacidade de auto-transformação",
-      "Resiliência e antifragilidade sistêmica",
-      "Simbiose perfeita humano-máquina"
+      "Plataforma estável para agilidade estratégica",
+      "Capacidade de pivotar rapidamente",
+      "Resposta eficaz a oportunidades e ameaças",
+      "Integração perfeita entre estratégia e execução"
     ],
     recommendations: [
-      "Focar em propósito e valores transcendentes",
-      "Desenvolver capacidades de regeneração sistêmica",
-      "Criar impacto positivo no ecossistema",
-      "Liderar transformação setorial e social"
+      "Liderar transformação setorial e ecossistêmica",
+      "Desenvolver capacidades de antecipação estratégica",
+      "Criar valor através de inovação disruptiva",
+      "Estabelecer parcerias estratégicas para co-evolução"
     ]
   }
 ];
