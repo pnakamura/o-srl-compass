@@ -68,6 +68,7 @@ export function OSRLAssessment() {
       <AssessmentResults
         osrlLevel={osrlLevel}
         pillarScores={pillarScores}
+        responses={responses}
         onReset={resetAssessment}
       />
     );

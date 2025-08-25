@@ -15,17 +15,18 @@ import {
   Zap,
   Shield
 } from 'lucide-react';
-import { PILLARS, OSRL_LEVELS } from '@/data/osrl-framework';
+import { PILLARS, OSRL_LEVELS, QUESTIONS } from '@/data/osrl-framework';
 import { RadarChart } from './RadarChart';
 import { useToast } from '@/hooks/use-toast';
 
 interface AssessmentResultsProps {
   osrlLevel: number;
   pillarScores: Record<string, number>;
+  responses: Record<string, number>;
   onReset: () => void;
 }
 
-export function AssessmentResults({ osrlLevel, pillarScores, onReset }: AssessmentResultsProps) {
+export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset }: AssessmentResultsProps) {
   const { toast } = useToast();
   const currentLevel = OSRL_LEVELS.find(level => level.level === osrlLevel);
   
@@ -34,21 +35,202 @@ export function AssessmentResults({ osrlLevel, pillarScores, onReset }: Assessme
     Object.values(pillarScores).reduce((sum, score) => sum + score, 0) / Object.keys(pillarScores).length
   );
 
-  // Identify strengths and weaknesses
-  const sortedPillars = PILLARS.map(pillar => ({
-    ...pillar,
-    score: pillarScores[pillar.id] || 0
-  })).sort((a, b) => b.score - a.score);
+  // Analyze specific responses for personalized insights
+  const getPersonalizedDescription = () => {
+    const averageScore = Object.values(responses).reduce((sum, score) => sum + score, 0) / Object.keys(responses).length;
+    
+    // Find specific strong and weak areas based on responses
+    const strongAreas = [];
+    const weakAreas = [];
+    
+    PILLARS.forEach(pillar => {
+      const pillarQuestions = QUESTIONS.filter(q => q.pillarId === pillar.id);
+      const pillarResponses = pillarQuestions.map(q => responses[q.id]).filter(r => r !== undefined);
+      const pillarAverage = pillarResponses.reduce((sum, score) => sum + score, 0) / pillarResponses.length;
+      
+      if (pillarAverage >= 4) {
+        strongAreas.push(pillar.name);
+      } else if (pillarAverage <= 2.5) {
+        weakAreas.push(pillar.name);
+      }
+    });
 
-  const strengths = sortedPillars.slice(0, 2);
-  const improvements = sortedPillars.slice(-2);
+    let description = currentLevel?.description || '';
+    
+    // Add specific insights based on responses
+    if (strongAreas.length > 0) {
+      description += ` Sua organização demonstra particular força em ${strongAreas.join(' e ')}.`;
+    }
+    
+    if (weakAreas.length > 0) {
+      description += ` Há oportunidades significativas de desenvolvimento em ${weakAreas.join(' e ')}.`;
+    }
+    
+    return description;
+  };
+
+  const getPersonalizedStrengthsAndImprovements = () => {
+    const analysis = PILLARS.map(pillar => {
+      const pillarQuestions = QUESTIONS.filter(q => q.pillarId === pillar.id);
+      const pillarResponses = pillarQuestions.map(q => responses[q.id]).filter(r => r !== undefined);
+      const pillarAverage = pillarResponses.reduce((sum, score) => sum + score, 0) / pillarResponses.length;
+      
+      // Find specific question responses for detailed analysis
+      const specificInsights = pillarQuestions.map(q => {
+        const response = responses[q.id];
+        return { question: q, response, pillarAverage };
+      }).filter(insight => insight.response !== undefined);
+      
+      return {
+        ...pillar,
+        score: pillarScores[pillar.id] || 0,
+        average: pillarAverage,
+        insights: specificInsights
+      };
+    }).sort((a, b) => b.score - a.score);
+
+    const strengths = analysis.slice(0, 2).map(pillar => ({
+      ...pillar,
+      specificStrength: getSpecificStrengthMessage(pillar)
+    }));
+    
+    const improvements = analysis.slice(-2).map(pillar => ({
+      ...pillar,
+      specificImprovement: getSpecificImprovementMessage(pillar)
+    }));
+
+    return { strengths, improvements };
+  };
+
+  const getSpecificStrengthMessage = (pillar: any) => {
+    const strongResponses = pillar.insights.filter((insight: any) => insight.response >= 4);
+    if (strongResponses.length > 0) {
+      return `Destaque em ${strongResponses.length} de ${pillar.insights.length} aspectos avaliados, demonstrando processos bem estruturados.`;
+    }
+    return pillar.description;
+  };
+
+  const getSpecificImprovementMessage = (pillar: any) => {
+    const weakResponses = pillar.insights.filter((insight: any) => insight.response <= 2);
+    if (weakResponses.length > 0) {
+      return `${weakResponses.length} de ${pillar.insights.length} aspectos precisam de atenção imediata para estruturação básica.`;
+    }
+    return `Área com potencial de crescimento para alcançar processos mais maduros.`;
+  };
+
+  const generateAndDownloadReport = () => {
+    const reportData = {
+      osrlLevel,
+      overallScore,
+      pillarScores,
+      personalizedDescription: getPersonalizedDescription(),
+      analysis: getPersonalizedStrengthsAndImprovements(),
+      recommendations: getRecommendationsByLevel(osrlLevel),
+      timestamp: new Date().toLocaleDateString('pt-BR')
+    };
+
+    // Create HTML report
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Relatório O-SRL - Nível ${osrlLevel}</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #333; }
+          .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+          .level-badge { background: #3b82f6; color: white; padding: 10px 20px; border-radius: 25px; font-weight: bold; }
+          .section { margin: 30px 0; }
+          .pillar-item { margin: 15px 0; padding: 15px; border-left: 4px solid #3b82f6; background: #f8fafc; }
+          .strength { border-left-color: #10b981; background: #f0fdf4; }
+          .improvement { border-left-color: #f59e0b; background: #fffbeb; }
+          .recommendation-list { list-style: none; padding: 0; }
+          .recommendation-list li { margin: 10px 0; padding: 10px; background: #f1f5f9; border-radius: 5px; }
+          .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #666; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Relatório de Diagnóstico O-SRL</h1>
+          <div class="level-badge">O-SRL ${osrlLevel} - ${currentLevel?.name}</div>
+          <p><strong>Pontuação Geral:</strong> ${overallScore}%</p>
+          <p><strong>Data:</strong> ${reportData.timestamp}</p>
+        </div>
+
+        <div class="section">
+          <h2>Análise do Nível Alcançado</h2>
+          <p>${reportData.personalizedDescription}</p>
+        </div>
+
+        <div class="section">
+          <h2>Pontuação Detalhada por Pilar</h2>
+          ${PILLARS.map(pillar => `
+            <div class="pillar-item">
+              <strong>${pillar.name}:</strong> ${pillarScores[pillar.id] || 0}%
+              <br><small>${pillar.description}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Pontos Fortes</h2>
+          ${reportData.analysis.strengths.map(strength => `
+            <div class="pillar-item strength">
+              <strong>${strength.name}</strong> (${strength.score}%)
+              <br><small>${strength.specificStrength}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Oportunidades de Melhoria</h2>
+          ${reportData.analysis.improvements.map(improvement => `
+            <div class="pillar-item improvement">
+              <strong>${improvement.name}</strong> (${improvement.score}%)
+              <br><small>${improvement.specificImprovement}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Recomendações Específicas</h2>
+          <ul class="recommendation-list">
+            ${reportData.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="footer">
+          <p>Relatório gerado pelo Framework O-SRL - Organizational Strategic Readiness Level</p>
+          <p>Este diagnóstico oferece uma visão geral da maturidade organizacional baseada nas respostas fornecidas.</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    // Create and download the report
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Relatorio-OSRL-Nivel-${osrlLevel}-${new Date().toISOString().split('T')[0]}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Relatório Baixado com Sucesso!",
+      description: "Seu relatório personalizado foi gerado e baixado. Abra o arquivo HTML em qualquer navegador.",
+      duration: 5000,
+    });
+  };
+
+  // Identify strengths and weaknesses with personalized analysis
+  const { strengths, improvements } = getPersonalizedStrengthsAndImprovements();
 
   const handleDownloadReport = () => {
-    toast({
-      title: "Relatório em Desenvolvimento",
-      description: "A funcionalidade de download será implementada em breve. Por enquanto, você pode capturar esta tela.",
-      duration: 3000,
-    });
+    generateAndDownloadReport();
   };
 
   const getLevelColor = (level: number) => {
@@ -137,7 +319,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, onReset }: Assessme
                   {currentLevel?.name}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {currentLevel?.description}
+                  {getPersonalizedDescription()}
                 </p>
               </div>
 
@@ -224,7 +406,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, onReset }: Assessme
                       {pillar.score}%
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pillar.description}</p>
+                  <p className="text-sm text-muted-foreground">{pillar.specificStrength}</p>
                 </div>
               ))}
             </CardContent>
@@ -250,7 +432,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, onReset }: Assessme
                       {pillar.score}%
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pillar.description}</p>
+                  <p className="text-sm text-muted-foreground">{pillar.specificImprovement}</p>
                 </div>
               ))}
             </CardContent>
