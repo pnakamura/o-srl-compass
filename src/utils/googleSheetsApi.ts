@@ -67,15 +67,24 @@ const convertToAssessmentData = (rows: string[][]): GoogleSheetsAssessmentData[]
         data.osrlLevel = parseInt(value) || 1;
       } else if (header === 'overallscore') {
         data.overallScore = parseInt(value) || 0;
-      } else if (header.startsWith('pillar_')) {
+      } else if (header.startsWith('score_')) {
         if (!data.pillarScores) data.pillarScores = {};
-        const pillarId = header.replace('pillar_', '');
+        const pillarId = header.replace('score_', '');
         data.pillarScores[pillarId] = parseInt(value) || 0;
-      } else if (header.startsWith('response_q')) {
+      } else if (header.startsWith('resposta_')) {
         if (!data.responses) data.responses = {};
-        const questionId = header.replace('response_', '');
+        const questionId = header.replace('resposta_', '');
         data.responses[questionId] = parseInt(value) || 0;
-      } else if (header === 'personalizeddescription') {
+      } else if (header === 'personalizedanalysis') {
+        if (!data.personalizedAnalysis) data.personalizedAnalysis = {};
+        try {
+          const analysisData = JSON.parse(value);
+          data.personalizedAnalysis = analysisData;
+        } catch {
+          // If not JSON, treat as description
+          data.personalizedAnalysis.description = value;
+        }
+      } else if (header === 'analysis_description') {
         if (!data.personalizedAnalysis) data.personalizedAnalysis = {};
         data.personalizedAnalysis.description = value;
       } else if (header === 'strengths') {
