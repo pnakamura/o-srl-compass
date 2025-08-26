@@ -3,13 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { InfoIcon, ArrowRight, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { InfoIcon, ArrowRight, ArrowLeft, CheckCircle2, History, Play } from 'lucide-react';
 import { PILLARS, QUESTIONS, OSRL_LEVELS, calculateOSRLLevel, calculatePillarScores } from '@/data/osrl-framework';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { AssessmentResults } from './AssessmentResults';
+import { AssessmentHistory } from './AssessmentHistory';
 
 export function OSRLAssessment() {
-  const [currentStep, setCurrentStep] = useState<'intro' | 'assessment' | 'results'>('intro');
+  const [currentStep, setCurrentStep] = useState<'intro' | 'assessment' | 'results' | 'history'>('intro');
   const [currentPillar, setCurrentPillar] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState<Record<string, number>>({});
@@ -60,6 +61,14 @@ export function OSRLAssessment() {
     setResponses({});
   };
 
+  const showHistory = () => {
+    setCurrentStep('history');
+  };
+
+  const backToIntro = () => {
+    setCurrentStep('intro');
+  };
+
   if (currentStep === 'results') {
     const osrlLevel = calculateOSRLLevel(responses);
     const pillarScores = calculatePillarScores(responses);
@@ -71,6 +80,23 @@ export function OSRLAssessment() {
         responses={responses}
         onReset={resetAssessment}
       />
+    );
+  }
+
+  // Show assessment history
+  if (currentStep === 'history') {
+    return (
+      <div className="min-h-screen bg-gradient-secondary p-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-6">
+            <Button variant="outline" onClick={backToIntro} className="mb-4">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Voltar ao Início
+            </Button>
+          </div>
+          <AssessmentHistory />
+        </div>
+      </div>
     );
   }
 
@@ -123,7 +149,7 @@ export function OSRLAssessment() {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <h4 className="font-medium text-warning">Níveis Intermediários (4-6)</h4>
+                  <h4 className="font-medium text-primary">Níveis Intermediários (4-6)</h4>
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div><strong>4. Definido:</strong> Processos padronizados</div>
                     <div><strong>5. Integrado:</strong> Processos institucionalizados</div>
@@ -202,16 +228,27 @@ export function OSRLAssessment() {
               </div>
             </div>
 
-            <div className="text-center pt-4">
-              <Button 
-                size="lg" 
-                onClick={startAssessment}
-                className="bg-gradient-primary hover:shadow-medium transition-all duration-300 px-8 py-6 text-lg"
-              >
-                Iniciar Diagnóstico
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <p className="text-sm text-muted-foreground mt-4">
+            <div className="text-center pt-4 space-y-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg" 
+                  onClick={startAssessment}
+                  className="bg-gradient-primary hover:shadow-medium transition-all duration-300 px-8 py-6 text-lg"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Iniciar Diagnóstico
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={showHistory}
+                  className="px-8 py-6 text-lg"
+                >
+                  <History className="mr-2 h-5 w-5" />
+                  Ver Histórico
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground">
                 Nenhum cadastro necessário • Resultados instantâneos • Totalmente confidencial
               </p>
             </div>

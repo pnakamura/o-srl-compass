@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { 
   Download, 
   RotateCcw, 
@@ -13,7 +16,10 @@ import {
   ArrowUp,
   Users,
   Zap,
-  Shield
+  Shield,
+  Send,
+  Loader2,
+  Mail
 } from 'lucide-react';
 import { PILLARS, OSRL_LEVELS, QUESTIONS } from '@/data/osrl-framework';
 import { RadarChart } from './RadarChart';
@@ -29,6 +35,12 @@ interface AssessmentResultsProps {
 export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset }: AssessmentResultsProps) {
   const { toast } = useToast();
   const currentLevel = OSRL_LEVELS.find(level => level.level === osrlLevel);
+  
+  // Webhook form state
+  const [email, setEmail] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [hasSent, setHasSent] = useState(false);
   
   // Calculate overall score
   const overallScore = Math.round(
@@ -243,6 +255,171 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset 
     if (level <= 3) return 'outline' as const;
     if (level <= 6) return 'default' as const;
     return 'default' as const;
+  };
+
+  // Webhook functions
+  const generateReportHtml = () => {
+    const reportData = {
+      osrlLevel,
+      overallScore,
+      pillarScores,
+      personalizedDescription: getPersonalizedDescription(),
+      analysis: getPersonalizedStrengthsAndImprovements(),
+      recommendations: getRecommendationsByLevel(osrlLevel),
+      timestamp: new Date().toLocaleDateString('pt-BR')
+    };
+
+    return `
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Relatório O-SRL - Nível ${osrlLevel}</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; color: #333; }
+          .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #e0e0e0; padding-bottom: 20px; }
+          .level-badge { background: #3b82f6; color: white; padding: 10px 20px; border-radius: 25px; font-weight: bold; }
+          .section { margin: 30px 0; }
+          .pillar-item { margin: 15px 0; padding: 15px; border-left: 4px solid #3b82f6; background: #f8fafc; }
+          .strength { border-left-color: #10b981; background: #f0fdf4; }
+          .improvement { border-left-color: #f59e0b; background: #fffbeb; }
+          .recommendation-list { list-style: none; padding: 0; }
+          .recommendation-list li { margin: 10px 0; padding: 10px; background: #f1f5f9; border-radius: 5px; }
+          .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #666; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Relatório de Diagnóstico O-SRL</h1>
+          <div class="level-badge">O-SRL ${osrlLevel} - ${currentLevel?.name}</div>
+          <p><strong>Pontuação Geral:</strong> ${overallScore}%</p>
+          <p><strong>Data:</strong> ${reportData.timestamp}</p>
+        </div>
+
+        <div class="section">
+          <h2>Análise do Nível Alcançado</h2>
+          <p>${reportData.personalizedDescription}</p>
+        </div>
+
+        <div class="section">
+          <h2>Pontuação Detalhada por Pilar</h2>
+          ${PILLARS.map(pillar => `
+            <div class="pillar-item">
+              <strong>${pillar.name}:</strong> ${pillarScores[pillar.id] || 0}%
+              <br><small>${pillar.description}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Pontos Fortes</h2>
+          ${reportData.analysis.strengths.map(strength => `
+            <div class="pillar-item strength">
+              <strong>${strength.name}</strong> (${strength.score}%)
+              <br><small>${strength.specificStrength}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Oportunidades de Melhoria</h2>
+          ${reportData.analysis.improvements.map(improvement => `
+            <div class="pillar-item improvement">
+              <strong>${improvement.name}</strong> (${improvement.score}%)
+              <br><small>${improvement.specificImprovement}</small>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="section">
+          <h2>Recomendações Específicas</h2>
+          <ul class="recommendation-list">
+            ${reportData.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="footer">
+          <p>Relatório gerado pelo Framework O-SRL - Organizational Strategic Readiness Level</p>
+          <p>Este diagnóstico oferece uma visão geral da maturidade organizacional baseada nas respostas fornecidas.</p>
+        </div>
+      </body>
+      </html>
+    `;
+  };
+
+  const saveToLocalStorage = (data: any) => {
+    try {
+      const existingData = JSON.parse(localStorage.getItem('osrl-assessments') || '[]');
+      existingData.push(data);
+      localStorage.setItem('osrl-assessments', JSON.stringify(existingData));
+    } catch (error) {
+      console.error('Erro ao salvar no localStorage:', error);
+    }
+  };
+
+  const sendToWebhook = async () => {
+    if (!isAnonymous && (!email || !email.includes('@'))) {
+      toast({
+        title: "E-mail Inválido",
+        description: "Por favor, insira um e-mail válido ou marque a opção 'Enviar de forma anônima'.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      const webhookData = {
+        email: isAnonymous ? "anonimo" : email,
+        timestamp: new Date().toISOString(),
+        osrlLevel,
+        overallScore,
+        pillarScores,
+        responses,
+        reportHtml: generateReportHtml(),
+        personalizedAnalysis: {
+          description: getPersonalizedDescription(),
+          analysis: getPersonalizedStrengthsAndImprovements(),
+          recommendations: getRecommendationsByLevel(osrlLevel)
+        }
+      };
+
+      // Save to localStorage
+      saveToLocalStorage(webhookData);
+
+      // Send to n8n webhook
+      const response = await fetch('https://postgres-n8n.wuzmwk.easypanel.host/webhook/ca6725ba-2167-46fb-8b95-b8245215de56', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+        mode: 'no-cors' // Para evitar problemas de CORS
+      });
+
+      setHasSent(true);
+      toast({
+        title: "Dados Enviados com Sucesso!",
+        description: "Sua avaliação foi registrada e o relatório foi enviado para análise.",
+        duration: 5000,
+      });
+
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+      toast({
+        title: "Erro ao Enviar Dados",
+        description: "Ocorreu um erro ao enviar os dados. Tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const validateEmail = (email: string) => {
+    return email.includes('@') && email.includes('.');
   };
 
   const getRecommendationsByLevel = (level: number) => {
@@ -501,6 +678,98 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset 
             Nova Avaliação
           </Button>
         </div>
+
+        {/* Webhook Data Submission */}
+        <Card className="shadow-medium border-primary/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <Mail className="w-6 h-6 text-primary" />
+              Registrar Avaliação
+            </CardTitle>
+            <CardDescription>
+              Envie seus dados para análise posterior e contribua para pesquisas de maturidade organizacional
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-mail (opcional)</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isAnonymous || hasSent}
+                    className={isAnonymous ? 'opacity-50' : ''}
+                  />
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Checkbox 
+                    id="anonymous"
+                    checked={isAnonymous}
+                    onCheckedChange={(checked) => {
+                      setIsAnonymous(checked as boolean);
+                      if (checked) setEmail('');
+                    }}
+                    disabled={hasSent}
+                  />
+                  <Label htmlFor="anonymous" className="text-sm">
+                    Enviar de forma anônima
+                  </Label>
+                </div>
+
+                {hasSent && (
+                  <div className="p-3 bg-success/10 border border-success/20 rounded-lg">
+                    <div className="flex items-center gap-2 text-success text-sm">
+                      <CheckCircle2 className="w-4 h-4" />
+                      Dados enviados com sucesso!
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="space-y-4">
+                <div className="p-4 bg-muted/50 rounded-lg">
+                  <h4 className="font-medium text-foreground mb-2">O que será enviado:</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Todas as respostas do formulário</li>
+                    <li>• Nível O-SRL e pontuações dos pilares</li>
+                    <li>• Relatório HTML completo</li>
+                    <li>• Análise personalizada gerada</li>
+                    <li>• Data e horário da avaliação</li>
+                  </ul>
+                </div>
+                
+                <Button
+                  onClick={sendToWebhook}
+                  disabled={isSending || hasSent || (!isAnonymous && !validateEmail(email))}
+                  className="w-full"
+                  size="lg"
+                >
+                  {isSending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : hasSent ? (
+                    <>
+                      <CheckCircle2 className="mr-2 h-4 w-4" />
+                      Dados Enviados
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Enviar Dados
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Footer */}
         <div className="text-center text-sm text-muted-foreground py-8">
