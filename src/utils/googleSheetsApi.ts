@@ -1,7 +1,8 @@
 // Google Sheets API utilities for accessing public spreadsheet data
 
 const SHEET_ID = '1mKctTHsgwo1vFaFyggqnkij89q3P1_QUUtZRv2PEks8';
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
+// Using /pub?output=csv for better CORS compatibility
+const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv&gid=0`;
 
 export interface GoogleSheetsAssessmentData {
   email: string;
@@ -114,24 +115,72 @@ const convertToAssessmentData = (rows: string[][]): GoogleSheetsAssessmentData[]
 // Fetch assessment data from Google Sheets
 export const fetchGoogleSheetsData = async (): Promise<GoogleSheetsAssessmentData[]> => {
   try {
+    console.log('📡 Fazendo requisição para:', CSV_URL);
     const response = await fetch(CSV_URL);
     
+    console.log('📊 Status da resposta:', response.status, response.statusText);
+    
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`Erro HTTP ${response.status}: ${response.statusText}. Verifique se a planilha está publicada na web.`);
     }
     
     const csvText = await response.text();
+    console.log('📄 Tamanho do CSV recebido:', csvText.length, 'caracteres');
+    console.log('📄 Primeiras linhas do CSV:', csvText.substring(0, 200));
+    
+    if (!csvText || csvText.trim().length === 0) {
+      throw new Error('A planilha está vazia ou não retornou dados válidos.');
+    }
+    
     const rows = parseCSV(csvText);
+    console.log('📋 Linhas parseadas:', rows.length);
+    
+    if (rows.length === 0) {
+      throw new Error('Não foi possível parsear o CSV ou a planilha não contém dados.');
+    }
+    
+    if (rows.length === 1) {
+      throw new Error('A planilha contém apenas cabeçalhos, sem dados de avaliações.');
+    }
+    
+    console.log('🏷️ Cabeçalhos encontrados:', rows[0]);
+    
     const assessments = convertToAssessmentData(rows);
+    console.log('✅ Avaliações convertidas:', assessments.length);
+    
+    if (assessments.length === 0) {
+      throw new Error('Nenhuma avaliação válida foi encontrada nos dados da planilha.');
+    }
     
     // Sort by timestamp descending
-    return assessments.sort((a, b) => 
+    const sortedAssessments = assessments.sort((a, b) => 
       new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     );
     
+    console.log('🎯 Dados processados com sucesso:', {
+      totalRecords: sortedAssessments.length,
+      firstRecord: {
+        email: sortedAssessments[0]?.email,
+        timestamp: sortedAssessments[0]?.timestamp,
+        osrlLevel: sortedAssessments[0]?.osrlLevel,
+        pillarCount: Object.keys(sortedAssessments[0]?.pillarScores || {}).length
+      }
+    });
+    
+    return sortedAssessments;
+    
   } catch (error) {
-    console.error('Erro ao buscar dados da Google Sheets:', error);
-    throw new Error('Não foi possível acessar os dados online. Verifique sua conexão com a internet.');
+    console.error('❌ Erro ao buscar dados da Google Sheets:', error);
+    
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      throw new Error('Erro de conectividade. Verifique sua conexão com a internet e se a planilha está acessível.');
+    }
+    
+    if (error instanceof Error) {
+      throw error; // Re-throw with original message
+    }
+    
+    throw new Error('Erro desconhecido ao acessar a planilha Google Sheets.');
   }
 };
 

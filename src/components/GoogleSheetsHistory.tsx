@@ -69,7 +69,10 @@ export function GoogleSheetsHistory() {
 
     setIsLoading(true);
     try {
+      console.log('🔄 Iniciando carregamento dos dados da Google Sheets...');
       const data = await fetchGoogleSheetsData();
+      console.log(`✅ ${data.length} avaliações carregadas com sucesso`);
+      
       setAssessments(data);
       
       if (data.length > 0) {
@@ -77,12 +80,34 @@ export function GoogleSheetsHistory() {
           title: "Dados Carregados",
           description: `${data.length} avaliação${data.length !== 1 ? 'ões' : ''} encontrada${data.length !== 1 ? 's' : ''}.`,
         });
+        
+        // Debug info
+        console.log('📊 Dados carregados:', {
+          totalAssessments: data.length,
+          firstAssessment: data[0],
+          pillarScores: data[0]?.pillarScores || {},
+          responses: data[0]?.responses || {}
+        });
+      } else {
+        console.log('⚠️ Nenhum dado encontrado na planilha');
+        toast({
+          title: "Nenhum Dado Encontrado",
+          description: "A planilha não contém dados válidos ou está vazia.",
+          variant: "default",
+        });
       }
     } catch (error) {
-      console.error('Erro ao carregar dados:', error);
+      console.error('❌ Erro detalhado ao carregar dados:', error);
+      
+      let errorMessage = 'Erro desconhecido';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        console.error('📋 Stack trace:', error.stack);
+      }
+      
       toast({
         title: "Erro ao Carregar Dados",
-        description: "Não foi possível carregar os dados da planilha. Verifique sua conexão.",
+        description: `Não foi possível carregar os dados da planilha: ${errorMessage}`,
         variant: "destructive",
       });
     } finally {
@@ -230,6 +255,13 @@ export function GoogleSheetsHistory() {
           <Button variant="outline" size="sm" onClick={() => setShowStats(!showStats)}>
             <BarChart3 className="w-4 h-4 mr-2" />
             {showStats ? 'Ocultar' : 'Mostrar'} Estatísticas
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => window.open(`https://docs.google.com/spreadsheets/d/1mKctTHsgwo1vFaFyggqnkij89q3P1_QUUtZRv2PEks8/pub?output=csv&gid=0`, '_blank')}
+          >
+            🔗 Testar URL
           </Button>
           <Button variant="outline" size="sm" onClick={loadAssessments}>
             <RefreshCw className="w-4 h-4 mr-2" />
