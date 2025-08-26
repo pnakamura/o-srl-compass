@@ -1,8 +1,12 @@
 // Google Sheets API utilities for accessing public spreadsheet data
 
 const SHEET_ID = '1mKctTHsgwo1vFaFyggqnkij89q3P1_QUUtZRv2PEks8';
-// Using /pub?output=csv for better CORS compatibility
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv&gid=0`;
+// Try multiple URL formats for better compatibility
+const CSV_URLS = [
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`,
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv&gid=0`,
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?exportFormat=csv&gid=0`
+];
 
 export interface GoogleSheetsAssessmentData {
   email: string;
@@ -112,19 +116,79 @@ const convertToAssessmentData = (rows: string[][]): GoogleSheetsAssessmentData[]
   }).filter(item => item.email && item.timestamp);
 };
 
+// Alternative approach using JSONP as fallback
+const tryFetchWithJSONP = (url: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const callbackName = `jsonp_callback_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+    const script = document.createElement('script');
+    const cleanup = () => {
+      document.head.removeChild(script);
+      delete (window as any)[callbackName];
+    };
+    
+    (window as any)[callbackName] = (data: any) => {
+      cleanup();
+      resolve(data);
+    };
+    
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('JSONP request failed'));
+    };
+    
+    script.src = `${url}&callback=${callbackName}`;
+    document.head.appendChild(script);
+    
+    // Timeout after 10 seconds
+    setTimeout(() => {
+      cleanup();
+      reject(new Error('JSONP request timed out'));
+    }, 10000);
+  });
+};
+
+// Try to fetch from multiple URL formats
+const tryFetchCSV = async (): Promise<string> => {
+  const errors: string[] = [];
+  
+  for (let i = 0; i < CSV_URLS.length; i++) {
+    const url = CSV_URLS[i];
+    try {
+      console.log(`📡 Tentativa ${i + 1}/${CSV_URLS.length} - URL:`, url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'text/csv,text/plain,*/*'
+        },
+        mode: 'cors' // Explicitly request CORS
+      });
+      
+      console.log(`📊 Status da resposta (tentativa ${i + 1}):`, response.status, response.statusText);
+      
+      if (response.ok) {
+        const csvText = await response.text();
+        if (csvText && csvText.trim().length > 0) {
+          console.log(`✅ Sucesso na tentativa ${i + 1}!`);
+          return csvText;
+        }
+      }
+      
+      errors.push(`Tentativa ${i + 1}: HTTP ${response.status}`);
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Erro desconhecido';
+      console.warn(`⚠️ Falha na tentativa ${i + 1}:`, errorMsg);
+      errors.push(`Tentativa ${i + 1}: ${errorMsg}`);
+    }
+  }
+  
+  // Throw error with all attempts details
+  throw new Error(`Todas as tentativas falharam:\n${errors.join('\n')}\n\nVerifique se a planilha está publicada na web e acessível publicamente.`);
+};
+
 // Fetch assessment data from Google Sheets
 export const fetchGoogleSheetsData = async (): Promise<GoogleSheetsAssessmentData[]> => {
   try {
-    console.log('📡 Fazendo requisição para:', CSV_URL);
-    const response = await fetch(CSV_URL);
-    
-    console.log('📊 Status da resposta:', response.status, response.statusText);
-    
-    if (!response.ok) {
-      throw new Error(`Erro HTTP ${response.status}: ${response.statusText}. Verifique se a planilha está publicada na web.`);
-    }
-    
-    const csvText = await response.text();
+    const csvText = await tryFetchCSV();
     console.log('📄 Tamanho do CSV recebido:', csvText.length, 'caracteres');
     console.log('📄 Primeiras linhas do CSV:', csvText.substring(0, 200));
     

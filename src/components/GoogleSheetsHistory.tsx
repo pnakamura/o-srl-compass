@@ -259,7 +259,7 @@ export function GoogleSheetsHistory() {
           <Button 
             variant="outline" 
             size="sm" 
-            onClick={() => window.open(`https://docs.google.com/spreadsheets/d/1mKctTHsgwo1vFaFyggqnkij89q3P1_QUUtZRv2PEks8/pub?output=csv&gid=0`, '_blank')}
+            onClick={() => window.open(`https://docs.google.com/spreadsheets/d/1mKctTHsgwo1vFaFyggqnkij89q3P1_QUUtZRv2PEks8/export?format=csv&gid=0`, '_blank')}
           >
             🔗 Testar URL
           </Button>
