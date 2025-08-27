@@ -150,15 +150,18 @@ const SupabaseHistory: React.FC<SupabaseHistoryProps> = ({ onBack }) => {
                           <div>
                             <h3 className="text-lg font-semibold mb-4">Pontuação por Pilar</h3>
                             <div className="grid gap-4">
-                              {Object.entries(selectedAssessment.pillar_scores).map(([pillar, score]) => (
-                                <div key={pillar} className="space-y-2">
-                                  <div className="flex justify-between text-sm">
-                                    <span className="font-medium">{pillar}</span>
-                                    <span>{score}/25</span>
+                              {Object.entries(selectedAssessment.pillar_scores).map(([pillar, score]) => {
+                                const numericScore = Number(score);
+                                return (
+                                  <div key={pillar} className="space-y-2">
+                                    <div className="flex justify-between text-sm">
+                                      <span className="font-medium">{pillar}</span>
+                                      <span>{numericScore}/25</span>
+                                    </div>
+                                    <Progress value={(numericScore / 25) * 100} className="h-2" />
                                   </div>
-                                  <Progress value={(score / 25) * 100} className="h-2" />
-                                </div>
-                              ))}
+                                );
+                              })}
                             </div>
                           </div>
 
@@ -208,14 +211,17 @@ const SupabaseHistory: React.FC<SupabaseHistoryProps> = ({ onBack }) => {
                 <div>
                   <h4 className="font-medium mb-2">Pontuação por Pilar</h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {Object.entries(assessment.pillar_scores).map(([pillar, score]) => (
-                      <div key={pillar} className="text-center">
-                        <div className="text-sm font-medium mb-1">{pillar}</div>
-                        <div className="text-lg font-bold">{score}/25</div>
-                        <div className={`h-2 rounded-full ${getLevelColor(Math.floor(score / 5))}`} 
-                             style={{ width: `${(score / 25) * 100}%`, margin: '0 auto' }} />
-                      </div>
-                    ))}
+                    {Object.entries(assessment.pillar_scores).map(([pillar, score]) => {
+                      const numericScore = Number(score);
+                      return (
+                        <div key={pillar} className="text-center">
+                          <div className="text-sm font-medium mb-1">{pillar}</div>
+                          <div className="text-lg font-bold">{numericScore}/25</div>
+                          <div className={`h-2 rounded-full ${getLevelColor(Math.floor(numericScore / 5))}`} 
+                               style={{ width: `${(numericScore / 25) * 100}%`, margin: '0 auto' }} />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
