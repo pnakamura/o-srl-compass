@@ -30,6 +30,7 @@ interface AssessmentResultsProps {
   pillarScores: Record<string, number>;
   responses: Record<string, number>;
   onReset: () => void;
+  user: any;
 }
 
 export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset }: AssessmentResultsProps) {

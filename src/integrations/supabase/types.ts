@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      osrl_assessments: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          osrl_level: number
+          overall_score: number
+          personalized_analysis: Json
+          pillar_scores: Json
+          report_html: string
+          responses: Json
+          timestamp: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          osrl_level: number
+          overall_score: number
+          personalized_analysis: Json
+          pillar_scores: Json
+          report_html: string
+          responses: Json
+          timestamp?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          osrl_level?: number
+          overall_score?: number
+          personalized_analysis?: Json
+          pillar_scores?: Json
+          report_html?: string
+          responses?: Json
+          timestamp?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           cargo: string | null
