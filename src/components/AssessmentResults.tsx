@@ -21,6 +21,9 @@ import { PILLARS, OSRL_LEVELS, QUESTIONS } from '@/data/osrl-framework';
 import { RadarChart } from './RadarChart';
 import { useToast } from '@/hooks/use-toast';
 import { useAssessments } from '@/hooks/useAssessments';
+import { AdvancedAnalytics } from '@/lib/advancedAnalytics';
+import { AdvancedInsights } from './AdvancedInsights';
+import { RoadmapGenerator } from './RoadmapGenerator';
 
 interface AssessmentResultsProps {
   osrlLevel: number;
@@ -38,6 +41,9 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
   // Save state
   const [isSaving, setIsSaving] = useState(false);
   const [hasSaved, setHasSaved] = useState(false);
+  
+  // Generate advanced analysis
+  const advancedAnalysis = AdvancedAnalytics.performAdvancedAnalysis(responses, pillarScores);
   
   // Calculate overall score
   const overallScore = Math.round(
@@ -628,6 +634,29 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
           </CardContent>
         </Card>
 
+        {/* Advanced Insights Section */}
+        <div className="space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-center text-2xl">
+                Análise Avançada e Insights Inteligentes
+              </CardTitle>
+              <CardDescription className="text-center">
+                Diagnóstico profundo com recomendações baseadas em análise preditiva
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <AdvancedInsights analysisResult={advancedAnalysis} />
+            </CardContent>
+          </Card>
+
+          {/* Roadmap Generator */}
+          <RoadmapGenerator 
+            analysisResult={advancedAnalysis} 
+            pillarScores={pillarScores}
+          />
+        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
@@ -682,17 +711,22 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
           </Card>
         )}
 
-        {/* Footer */}
-        <div className="text-center text-sm text-muted-foreground py-8">
-          <p className="flex items-center justify-center gap-2 mb-2">
-            <Users className="w-4 h-4" />
-            Diagnóstico baseado no Framework O-SRL • 100% Anônimo e Gratuito
-          </p>
-          <p>
-            Esta avaliação fornece uma visão geral da maturidade organizacional. 
-            Para análises mais profundas, considere consultar especialistas em transformação organizacional.
-          </p>
-        </div>
+        {/* Framework Info */}
+        <Card className="border-muted">
+          <CardContent className="pt-6">
+            <div className="text-center text-sm text-muted-foreground space-y-2">
+              <p className="font-medium">Sobre o Framework O-SRL</p>
+              <p>
+                O Organizational Strategic Readiness Level (O-SRL) é uma metodologia estruturada 
+                para avaliar e desenvolver a maturidade organizacional em 7 pilares fundamentais.
+              </p>
+              <p className="text-xs">
+                Esta avaliação fornece insights para impulsionar a evolução estratégica da sua organização 
+                através de processos estruturados e melhores práticas comprovadas.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
