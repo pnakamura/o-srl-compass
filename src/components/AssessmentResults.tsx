@@ -22,8 +22,13 @@ import { RadarChart } from './RadarChart';
 import { useToast } from '@/hooks/use-toast';
 import { useAssessments } from '@/hooks/useAssessments';
 import { AdvancedAnalytics } from '@/lib/advancedAnalytics';
+import { DetailedResponseAnalyzer } from '@/lib/detailedResponseAnalyzer';
+import { ContextualRecommendationEngine } from '@/lib/contextualRecommendationEngine';
 import { AdvancedInsights } from './AdvancedInsights';
 import { RoadmapGenerator } from './RoadmapGenerator';
+import { QuestionLevelInsights } from './QuestionLevelInsights';
+import { InteractiveHeatmap } from './InteractiveHeatmap';
+import { ImplementationDashboard } from './ImplementationDashboard';
 
 interface AssessmentResultsProps {
   osrlLevel: number;
@@ -44,6 +49,8 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
   
   // Generate advanced analysis
   const advancedAnalysis = AdvancedAnalytics.performAdvancedAnalysis(responses, pillarScores);
+  const detailedAnalysis = DetailedResponseAnalyzer.analyzeResponses(responses);
+  const recommendationPlan = ContextualRecommendationEngine.generateRecommendationPlan(responses, detailedAnalysis);
   
   // Calculate overall score
   const overallScore = Math.round(
