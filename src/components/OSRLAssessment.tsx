@@ -147,10 +147,10 @@ export const OSRLAssessment: React.FC = () => {
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
                 <CardTitle className="text-3xl font-bold mb-2">
-                  Avaliação O-SRL (Organizational Self-Regulated Learning)
+                  Diagnóstico O-SRL Municipal
                 </CardTitle>
                 <CardDescription className="text-lg">
-                  Avalie a maturidade da sua organização em aprendizagem autorregulada
+                  Avalie a maturidade do seu departamento em gestão de projetos e programas públicos complexos
                 </CardDescription>
               </div>
               <div className="flex items-center gap-2">
@@ -174,7 +174,7 @@ export const OSRLAssessment: React.FC = () => {
             <CardContent className="space-y-6 pt-6">
               <div className="text-center space-y-4">
                 <p className="text-lg text-muted-foreground">
-                  Esta avaliação mede a capacidade da sua organização de aprender e se adaptar de forma sistemática.
+                  Esta avaliação mede a maturidade do seu departamento em gestão de projetos e programas públicos complexos.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6 text-left">

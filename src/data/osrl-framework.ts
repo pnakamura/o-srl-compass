@@ -28,424 +28,424 @@ export interface OSRLLevel {
 export const PILLARS: Pillar[] = [
   {
     id: "governance",
-    name: "Governança Estratégica e Liderança",
-    description: "Estruturas de tomada de decisão e alinhamento estratégico",
-    importance: "Define como a organização direciona recursos e esforços para maximizar o retorno estratégico"
+    name: "Governança Pública e Liderança Institucional",
+    description: "Processos de tomada de decisão transparentes e accountability público",
+    importance: "Define como o departamento direciona recursos públicos e esforços para maximizar o impacto social e valor público"
   },
   {
     id: "delivery",
-    name: "Entrega de Portfólio, Programas e Projetos",
-    description: "Capacidades de execução e gestão de portfólio (PPM)",
-    importance: "Determina a eficácia na transformação de estratégias em resultados tangíveis através de processos estruturados"
+    name: "Gestão de Portfólio de Projetos e Programas Públicos",
+    description: "Metodologias estruturadas para PPM no setor público e integração intersetorial",
+    importance: "Determina a eficácia na transformação de políticas públicas em resultados tangíveis para cidadãos através de processos estruturados"
   },
   {
     id: "benefits",
-    name: "Gestão de Benefícios e Realização de Valor",
-    description: "Mecanismos de captura e maximização de valor",
-    importance: "Garante que investimentos se convertam em benefícios mensuráveis e sustentáveis para a organização"
+    name: "Gestão de Benefícios e Realização de Valor Público",
+    description: "Identificação e sistematização de impacto social e boas práticas",
+    importance: "Garante que investimentos públicos se convertam em benefícios mensuráveis e sustentáveis para a população"
   },
   {
     id: "financial",
-    name: "Gestão Financeira e de Recursos",
-    description: "Otimização de recursos e controles financeiros",
-    importance: "Estabelece a disciplina financeira necessária para suportar crescimento sustentável e alocação eficiente"
+    name: "Gestão Orçamentária e de Recursos Públicos",
+    description: "Otimização de recursos públicos e transparência nos processos de aquisição",
+    importance: "Estabelece a disciplina orçamentária necessária para eficiência no gasto público e alocação otimizada entre iniciativas"
   },
   {
     id: "risk",
-    name: "Gestão de Riscos e Resiliência",
-    description: "Antecipação e mitigação de ameaças organizacionais",
-    importance: "Constrói a capacidade de navegar incertezas e manter continuidade operacional em cenários adversos"
+    name: "Gestão de Riscos Institucionais e Continuidade de Serviços",
+    description: "Antecipação de riscos específicos do setor público e manutenção de serviços essenciais",
+    importance: "Constrói a capacidade de manter continuidade de serviços públicos em cenários adversos e preservar credibilidade institucional"
   },
   {
     id: "stakeholders",
-    name: "Engajamento de Stakeholders e Comunicações",
-    description: "Alinhamento e comunicação com partes interessadas",
-    importance: "Facilita a colaboração e o suporte necessários para execução bem-sucedida de iniciativas estratégicas"
+    name: "Comunicação Interna e Engajamento de Stakeholders",
+    description: "Integração entre departamentos e comunicação transparente com cidadãos",
+    importance: "Facilita a colaboração intersetorial e o engajamento necessários para execução bem-sucedida de políticas públicas"
   },
   {
     id: "people",
-    name: "Pessoas, Cultura e Competência",
-    description: "Desenvolvimento humano e cultura organizacional",
-    importance: "Desenvolve as capacidades humanas e culturais que sustentam a execução eficaz de processos maduros"
+    name: "Pessoas, Cultura de Serviço Público e Competências",
+    description: "Desenvolvimento de competências em gestão pública e cultura de servir ao cidadão",
+    importance: "Desenvolve as capacidades humanas e culturais que sustentam a execução eficaz de processos maduros de gestão pública"
   }
 ];
 
 export const QUESTIONS: Question[] = [
-  // Governança Estratégica e Liderança
+  // Governança Pública e Liderança Institucional
   {
     id: "gov1",
     pillarId: "governance",
-    text: "Como sua organização toma decisões estratégicas sobre investimentos e prioridades?",
-    context: "Avalia se existe um processo estruturado e documentado para decisões estratégicas.",
+    text: "Como o departamento toma decisões sobre priorização de obras públicas, consultorias e políticas?",
+    context: "Avalia se existe processo transparente e documentado para decisões públicas com accountability.",
     options: [
-      { value: 1, label: "Ad-hoc", description: "Decisões tomadas caso a caso, sem processo definido" },
-      { value: 2, label: "Informal", description: "Algumas práticas existem mas não são documentadas" },
-      { value: 3, label: "Básico", description: "Processo básico documentado e seguido ocasionalmente" },
-      { value: 4, label: "Estruturado", description: "Processo bem definido, documentado e seguido consistentemente" },
-      { value: 5, label: "Otimizado", description: "Processo maduro com melhoria contínua baseada em dados" }
+      { value: 1, label: "Ad-hoc", description: "Decisões tomadas caso a caso, sem critérios ou transparência" },
+      { value: 2, label: "Informal", description: "Alguns critérios existem mas não são documentados ou públicos" },
+      { value: 3, label: "Básico", description: "Critérios básicos documentados com transparência limitada" },
+      { value: 4, label: "Estruturado", description: "Processo transparente, documentado e com prestação de contas" },
+      { value: 5, label: "Otimizado", description: "Processo maduro com participação cidadã e melhoria contínua" }
     ]
   },
   {
     id: "gov2",
     pillarId: "governance",
-    text: "Qual o nível de alinhamento entre estratégia corporativa e execução operacional?",
-    context: "Mede a capacidade de traduzir estratégia em ações operacionais concretas.",
+    text: "Qual o nível de alinhamento entre políticas públicas e execução operacional no departamento?",
+    context: "Mede a capacidade de traduzir diretrizes municipais em ações concretas para cidadãos.",
     options: [
-      { value: 1, label: "Desconectado", description: "Estratégia e operação funcionam independentemente" },
+      { value: 1, label: "Desconectado", description: "Políticas públicas e operação funcionam independentemente" },
       { value: 2, label: "Ocasional", description: "Algum alinhamento existe mas é inconsistente" },
-      { value: 3, label: "Parcial", description: "Alinhamento claro em algumas áreas da organização" },
+      { value: 3, label: "Parcial", description: "Alinhamento claro em algumas áreas do departamento" },
       { value: 4, label: "Integrado", description: "Forte alinhamento com mecanismos de tradução estabelecidos" },
-      { value: 5, label: "Dinâmico", description: "Alinhamento contínuo com adaptação em tempo real" }
+      { value: 5, label: "Dinâmico", description: "Alinhamento contínuo com adaptação às demandas cidadãs" }
     ]
   },
   {
     id: "gov3",
     pillarId: "governance",
-    text: "Como a liderança monitora e comunica o progresso estratégico?",
-    context: "Avalia a existência de sistemas de monitoramento e comunicação do progresso estratégico.",
+    text: "Como a liderança monitora e comunica o progresso de projetos para gestores e cidadãos?",
+    context: "Avalia sistemas de monitoramento e comunicação transparente do progresso público.",
     options: [
       { value: 1, label: "Inexistente", description: "Sem monitoramento formal ou comunicação regular" },
       { value: 2, label: "Básico", description: "Monitoramento esporádico com comunicação limitada" },
       { value: 3, label: "Regular", description: "Relatórios periódicos e comunicação estruturada" },
-      { value: 4, label: "Sistemático", description: "Dashboards em tempo real e comunicação proativa" },
-      { value: 5, label: "Integrado", description: "Inteligência estratégica contínua com feedback loops" }
+      { value: 4, label: "Sistemático", description: "Portais de transparência em tempo real e comunicação proativa" },
+      { value: 5, label: "Integrado", description: "Inteligência pública contínua com feedback cidadão" }
     ]
   },
   {
     id: "gov4",
     pillarId: "governance",
-    text: "Qual o grau de maturidade dos processos de governança da sua organização?",
-    context: "Verifica se existem processos de governança documentados, implementados e otimizados.",
+    text: "Qual o grau de maturidade dos processos de governança pública do departamento?",
+    context: "Verifica conformidade legal, controles internos e prestação de contas.",
     options: [
-      { value: 1, label: "Inicial", description: "Processos inexistentes ou completamente ad-hoc" },
-      { value: 2, label: "Emergente", description: "Alguns processos básicos começando a ser definidos" },
-      { value: 3, label: "Definido", description: "Processos documentados e parcialmente implementados" },
-      { value: 4, label: "Gerenciado", description: "Processos implementados com métricas e controles" },
-      { value: 5, label: "Otimizado", description: "Processos maduros com melhoria contínua" }
+      { value: 1, label: "Inicial", description: "Processos administrativos inconsistentes, conformidade mínima" },
+      { value: 2, label: "Emergente", description: "Alguns processos básicos, conformidade parcial" },
+      { value: 3, label: "Definido", description: "Processos documentados, conformidade adequada" },
+      { value: 4, label: "Gerenciado", description: "Processos controlados com métricas e auditoria" },
+      { value: 5, label: "Otimizado", description: "Governança madura com transparência exemplar" }
     ]
   },
   
-  // Entrega de Portfólio, Programas e Projetos
+  // Gestão de Portfólio de Projetos e Programas Públicos
   {
     id: "del1",
     pillarId: "delivery",
-    text: "Sua organização possui uma metodologia estruturada para Gestão de Portfólio de Projetos (PPM)?",
-    context: "Avalia se existe um sistema formal de PPM para alinhar projetos à estratégia organizacional.",
+    text: "O departamento possui metodologia estruturada para gestão de portfólio de projetos públicos?",
+    context: "Avalia se existe sistema formal de PPM para coordenar obras, consultorias e estudos.",
     options: [
-      { value: 1, label: "Inexistente", description: "Projetos gerenciados individualmente sem coordenação" },
-      { value: 2, label: "Básica", description: "Lista de projetos com alguma priorização informal" },
-      { value: 3, label: "Estruturada", description: "PPM básico com critérios de priorização definidos" },
-      { value: 4, label: "Integrada", description: "PPM maduro integrado ao planejamento estratégico" },
-      { value: 5, label: "Otimizada", description: "PPM dinâmico com otimização contínua de portfólio" }
+      { value: 1, label: "Inexistente", description: "Projetos gerenciados individualmente sem coordenação entre setores" },
+      { value: 2, label: "Básica", description: "Lista de projetos com priorização informal entre coordenações" },
+      { value: 3, label: "Estruturada", description: "PPM básico com critérios para obras e consultorias públicas" },
+      { value: 4, label: "Integrada", description: "PPM maduro integrado ao planejamento municipal" },
+      { value: 5, label: "Otimizada", description: "PPM dinâmico com otimização baseada em impacto social" }
     ]
   },
   {
     id: "del2",
     pillarId: "delivery",
-    text: "Como são definidas e documentadas as metodologias de entrega de projetos?",
-    context: "Verifica se existem processos padronizados e documentados para execução de projetos.",
+    text: "Como são documentadas as metodologias para execução de obras e consultorias públicas?",
+    context: "Verifica se existem processos padronizados para licitações, contratos e entregas.",
     options: [
-      { value: 1, label: "Inexistente", description: "Cada projeto segue abordagem própria sem padronização" },
+      { value: 1, label: "Inexistente", description: "Cada projeto segue abordagem própria sem metodologia" },
       { value: 2, label: "Informal", description: "Algumas práticas comuns mas não documentadas" },
-      { value: 3, label: "Padronizada", description: "Metodologia básica documentada e utilizada" },
-      { value: 4, label: "Matura", description: "Metodologia robusta com templates e ferramentas" },
-      { value: 5, label: "Adaptativa", description: "Metodologia flexível que se adapta ao contexto do projeto" }
+      { value: 3, label: "Padronizada", description: "Metodologia básica para projetos públicos documentada" },
+      { value: 4, label: "Matura", description: "Metodologia robusta com templates para diferentes tipos de projeto" },
+      { value: 5, label: "Adaptativa", description: "Metodologia flexível adaptada ao contexto de cada obra/consultoria" }
     ]
   },
   {
     id: "del3",
     pillarId: "delivery",
-    text: "Qual o nível de integração entre diferentes projetos e programas na organização?",
-    context: "Mede a capacidade de coordenar projetos interdependentes e maximizar sinergias.",
+    text: "Qual o nível de integração entre projetos de diferentes secretarias e coordenações?",
+    context: "Mede a capacidade de coordenar projetos intersetoriais e maximizar sinergias públicas.",
     options: [
-      { value: 1, label: "Isolado", description: "Projetos executados independentemente sem coordenação" },
-      { value: 2, label: "Ocasional", description: "Alguma coordenação quando conflitos surgem" },
-      { value: 3, label: "Planejado", description: "Coordenação planejada com identificação de dependências" },
-      { value: 4, label: "Integrado", description: "Forte integração com gestão ativa de interdependências" },
-      { value: 5, label: "Otimizado", description: "Sinergia máxima com otimização contínua do portfólio" }
+      { value: 1, label: "Isolado", description: "Projetos executados independentemente em silos departamentais" },
+      { value: 2, label: "Ocasional", description: "Coordenação apenas quando conflitos surgem" },
+      { value: 3, label: "Planejado", description: "Coordenação planejada com identificação de dependências intersetoriais" },
+      { value: 4, label: "Integrado", description: "Forte integração com gestão ativa de projetos interdepartamentais" },
+      { value: 5, label: "Otimizado", description: "Sinergia máxima entre secretarias com otimização contínua" }
     ]
   },
   {
     id: "del4",
     pillarId: "delivery",
-    text: "Como é feito o monitoramento e controle da entrega de valor dos projetos?",
-    context: "Avalia se existe acompanhamento sistemático do progresso e entrega de valor.",
+    text: "Como é monitorado o progresso e impacto de obras e consultorias para cidadãos?",
+    context: "Avalia acompanhamento sistemático do progresso e benefícios para população.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem monitoramento formal de progresso ou valor" },
-      { value: 2, label: "Básico", description: "Relatórios ocasionais de status sem métricas claras" },
-      { value: 3, label: "Regular", description: "Monitoramento periódico com métricas básicas" },
-      { value: 4, label: "Sistemático", description: "Dashboard em tempo real com métricas de valor" },
-      { value: 5, label: "Preditivo", description: "Análise preditiva e otimização contínua" }
+      { value: 1, label: "Inexistente", description: "Sem monitoramento formal de progresso ou impacto social" },
+      { value: 2, label: "Básico", description: "Relatórios ocasionais sem métricas de benefício cidadão" },
+      { value: 3, label: "Regular", description: "Monitoramento periódico com métricas básicas de impacto" },
+      { value: 4, label: "Sistemático", description: "Dashboard público em tempo real com métricas sociais" },
+      { value: 5, label: "Preditivo", description: "Análise preditiva de impacto e otimização contínua" }
     ]
   },
 
-  // Gestão de Benefícios e Realização de Valor
+  // Gestão de Benefícios e Realização de Valor Público
   {
     id: "ben1",
     pillarId: "benefits",
-    text: "Como sua organização identifica e quantifica benefícios esperados de iniciativas?",
-    context: "Verifica se existe processo estruturado para definir e medir benefícios antes da execução.",
+    text: "Como o departamento identifica e quantifica o impacto social esperado de projetos?",
+    context: "Verifica se existe processo para definir e medir benefícios sociais antes da execução.",
     options: [
-      { value: 1, label: "Inexistente", description: "Benefícios não são formalmente identificados ou quantificados" },
+      { value: 1, label: "Inexistente", description: "Impacto social não é formalmente identificado ou quantificado" },
       { value: 2, label: "Informal", description: "Benefícios estimados informalmente sem documentação" },
-      { value: 3, label: "Básico", description: "Processo básico de identificação e documentação de benefícios" },
-      { value: 4, label: "Estruturado", description: "Metodologia robusta com métricas claras e baselines" },
-      { value: 5, label: "Otimizado", description: "Sistema integrado de gestão de valor com otimização contínua" }
+      { value: 3, label: "Básico", description: "Processo básico de identificação de impacto social" },
+      { value: 4, label: "Estruturado", description: "Metodologia robusta com métricas sociais claras" },
+      { value: 5, label: "Otimizado", description: "Sistema integrado de gestão de valor público com otimização contínua" }
     ]
   },
   {
     id: "ben2",
     pillarId: "benefits",
-    text: "Qual o nível de rastreamento da realização efetiva de benefícios pós-implementação?",
-    context: "Mede se benefícios prometidos são efetivamente monitorados e realizados após projetos.",
+    text: "Como são identificadas e sistematizadas as boas práticas em projetos públicos?",
+    context: "Mede se lições aprendidas são documentadas e compartilhadas entre equipes.",
     options: [
-      { value: 1, label: "Inexistente", description: "Nenhum acompanhamento de benefícios após conclusão" },
-      { value: 2, label: "Esporádico", description: "Verificação ocasional e informal de alguns benefícios" },
-      { value: 3, label: "Periódico", description: "Acompanhamento regular com relatórios estruturados" },
-      { value: 4, label: "Sistemático", description: "Monitoramento contínuo integrado à gestão operacional" },
-      { value: 5, label: "Otimizado", description: "Sistema de inteligência de benefícios com ações corretivas automáticas" }
+      { value: 1, label: "Inexistente", description: "Nenhuma sistematização de lições aprendidas" },
+      { value: 2, label: "Esporádico", description: "Documentação ocasional e informal de algumas práticas" },
+      { value: 3, label: "Periódico", description: "Sistematização regular com repositório básico" },
+      { value: 4, label: "Sistemático", description: "Sistema maduro de gestão de conhecimento público" },
+      { value: 5, label: "Otimizado", description: "Inteligência de boas práticas com aplicação automática" }
     ]
   },
   {
     id: "ben3",
     pillarId: "benefits",
     text: "Como são gerenciadas as dependências organizacionais para realização de benefícios?",
-    context: "Avalia se mudanças organizacionais necessárias para capturar benefícios são adequadamente gerenciadas.",
+    context: "Avalia se mudanças necessárias nos processos administrativos são bem gerenciadas.",
     options: [
       { value: 1, label: "Ignoradas", description: "Mudanças organizacionais não são consideradas sistematicamente" },
       { value: 2, label: "Reativas", description: "Mudanças abordadas quando problemas surgem" },
       { value: 3, label: "Planejadas", description: "Mudanças organizacionais identificadas e planejadas" },
       { value: 4, label: "Gerenciadas", description: "Gestão ativa de mudanças com suporte dedicado" },
-      { value: 5, label: "Integradas", description: "Mudança organizacional totalmente integrada à entrega de valor" }
+      { value: 5, label: "Integradas", description: "Mudança organizacional totalmente integrada à entrega de valor público" }
     ]
   },
   {
     id: "ben4",
     pillarId: "benefits",
-    text: "Qual o grau de otimização contínua na captura de valor organizacional?",
-    context: "Verifica se existe melhoria contínua nos processos de realização de benefícios.",
+    text: "Como é promovida a melhoria contínua baseada em feedback de cidadãos e beneficiários?",
+    context: "Verifica se existe melhoria contínua baseada no retorno da população.",
     options: [
-      { value: 1, label: "Inexistente", description: "Nenhuma otimização ou melhoria nos processos de valor" },
-      { value: 2, label: "Ocasional", description: "Melhorias esporádicas quando problemas são identificados" },
-      { value: 3, label: "Planejada", description: "Ciclos regulares de revisão e melhoria" },
-      { value: 4, label: "Sistemática", description: "Otimização contínua baseada em dados e métricas" },
-      { value: 5, label: "Adaptativa", description: "Sistema auto-otimizante com inteligência artificial" }
+      { value: 1, label: "Inexistente", description: "Nenhum feedback cidadão ou melhoria nos processos" },
+      { value: 2, label: "Ocasional", description: "Melhorias esporádicas quando reclamações surgem" },
+      { value: 3, label: "Planejada", description: "Ciclos regulares de feedback e melhoria" },
+      { value: 4, label: "Sistemática", description: "Otimização contínua baseada em satisfação cidadã" },
+      { value: 5, label: "Adaptativa", description: "Sistema responsivo com melhoria contínua automática" }
     ]
   },
 
-  // Gestão Financeira e de Recursos
+  // Gestão Orçamentária e de Recursos Públicos
   {
     id: "fin1",
     pillarId: "financial",
-    text: "Como é realizado o planejamento e controle orçamentário de iniciativas estratégicas?",
-    context: "Avalia a maturidade dos processos de planejamento financeiro e controle orçamentário.",
+    text: "Como é realizado o planejamento orçamentário integrado com o plano de governo?",
+    context: "Avalia maturidade do planejamento orçamentário alinhado com diretrizes municipais.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem planejamento financeiro formal ou controle orçamentário" },
-      { value: 2, label: "Básico", description: "Orçamentos simples com controle limitado" },
+      { value: 1, label: "Inexistente", description: "Sem planejamento orçamentário formal ou alinhamento" },
+      { value: 2, label: "Básico", description: "Orçamentos simples com alinhamento limitado" },
       { value: 3, label: "Estruturado", description: "Planejamento orçamentário com acompanhamento regular" },
-      { value: 4, label: "Integrado", description: "Gestão financeira integrada com planejamento estratégico" },
-      { value: 5, label: "Otimizado", description: "Sistema financeiro dinâmico com otimização de recursos em tempo real" }
+      { value: 4, label: "Integrado", description: "Gestão orçamentária integrada com plano de governo" },
+      { value: 5, label: "Otimizado", description: "Sistema orçamentário dinâmico com otimização em tempo real" }
     ]
   },
   {
     id: "fin2",
     pillarId: "financial",
-    text: "Qual o nível de transparência e governança nos processos financeiros?",
-    context: "Mede se existem controles adequados e transparência na gestão de recursos financeiros.",
+    text: "Qual o nível de transparência e governança nos processos de aquisição pública?",
+    context: "Mede conformidade com Lei de Licitações e transparência nos gastos públicos.",
     options: [
-      { value: 1, label: "Opaco", description: "Processos financeiros com pouca transparência ou controles" },
+      { value: 1, label: "Opaco", description: "Processos licitatórios com pouca transparência ou controles" },
       { value: 2, label: "Limitado", description: "Controles básicos com transparência restrita" },
-      { value: 3, label: "Adequado", description: "Controles estabelecidos com relatórios regulares" },
-      { value: 4, label: "Robusto", description: "Sistema de governança financeira maduro e transparente" },
-      { value: 5, label: "Exemplar", description: "Governança financeira de classe mundial com auditoria contínua" }
+      { value: 3, label: "Adequado", description: "Controles estabelecidos com portais de transparência" },
+      { value: 4, label: "Robusto", description: "Sistema de governança maduro e transparência proativa" },
+      { value: 5, label: "Exemplar", description: "Governança exemplar com auditoria contínua e dados abertos" }
     ]
   },
   {
     id: "fin3",
     pillarId: "financial",
-    text: "Como é feita a otimização da alocação de recursos entre diferentes iniciativas?",
-    context: "Verifica se existe processo estruturado para otimizar o uso de recursos organizacionais.",
+    text: "Como são mapeados, comunicados e controlados os processos de aquisição?",
+    context: "Verifica se processos licitatórios são bem documentados e controlados.",
     options: [
-      { value: 1, label: "Ad-hoc", description: "Alocação baseada em disponibilidade sem otimização" },
-      { value: 2, label: "Simples", description: "Critérios básicos de alocação com pouca análise" },
-      { value: 3, label: "Criteriosa", description: "Processo estruturado com critérios claros de alocação" },
-      { value: 4, label: "Otimizada", description: "Otimização sistemática baseada em retorno e prioridades" },
-      { value: 5, label: "Dinâmica", description: "Alocação dinâmica com rebalanceamento contínuo" }
+      { value: 1, label: "Ad-hoc", description: "Processos sem mapeamento ou controle adequado" },
+      { value: 2, label: "Simples", description: "Processos básicos com pouca documentação" },
+      { value: 3, label: "Mapeado", description: "Processos mapeados e documentados adequadamente" },
+      { value: 4, label: "Controlado", description: "Processos controlados com métricas e monitoramento" },
+      { value: 5, label: "Otimizado", description: "Processos otimizados com melhoria contínua" }
     ]
   },
   {
     id: "fin4",
     pillarId: "financial",
-    text: "Qual o grau de integração entre gestão financeira e entrega de valor?",
-    context: "Avalia se decisões financeiras estão alinhadas com objetivos de criação de valor.",
+    text: "Como é feita a otimização da alocação de recursos entre diferentes iniciativas públicas?",
+    context: "Avalia se recursos públicos são alocados com base em impacto e eficiência.",
     options: [
-      { value: 1, label: "Desconectado", description: "Gestão financeira independente dos objetivos de valor" },
-      { value: 2, label: "Básico", description: "Alguma consideração de valor nas decisões financeiras" },
-      { value: 3, label: "Alinhado", description: "Decisões financeiras consideram impacto no valor" },
-      { value: 4, label: "Integrado", description: "Gestão financeira totalmente alinhada à estratégia de valor" },
-      { value: 5, label: "Otimizado", description: "Sistema integrado que maximiza valor através de decisões financeiras" }
+      { value: 1, label: "Desconectado", description: "Alocação sem consideração de impacto social" },
+      { value: 2, label: "Básico", description: "Alguma consideração de prioridades públicas" },
+      { value: 3, label: "Criteriosa", description: "Alocação baseada em critérios de impacto social" },
+      { value: 4, label: "Otimizada", description: "Otimização sistemática baseada em benefício cidadão" },
+      { value: 5, label: "Dinâmica", description: "Alocação dinâmica maximizando valor público" }
     ]
   },
 
-  // Gestão de Riscos e Resiliência
+  // Gestão de Riscos Institucionais e Continuidade de Serviços
   {
     id: "risk1",
     pillarId: "risk",
-    text: "Como sua organização identifica e avalia riscos estratégicos e operacionais?",
-    context: "Verifica se existe processo sistemático de identificação e avaliação de riscos.",
+    text: "Como o departamento identifica e avalia riscos específicos do setor público?",
+    context: "Verifica se existe processo para identificar riscos políticos, legais e operacionais.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem processo formal de identificação ou avaliação de riscos" },
+      { value: 1, label: "Inexistente", description: "Sem processo formal de identificação de riscos públicos" },
       { value: 2, label: "Reativo", description: "Riscos identificados apenas quando se materializam" },
-      { value: 3, label: "Básico", description: "Processo básico de identificação com avaliação periódica" },
-      { value: 4, label: "Sistemático", description: "Framework robusto de gestão de riscos bem implementado" },
-      { value: 5, label: "Preditivo", description: "Sistema avançado com análise preditiva e cenários" }
+      { value: 3, label: "Básico", description: "Processo básico considerando principais riscos municipais" },
+      { value: 4, label: "Sistemático", description: "Framework robusto considerando mudanças políticas e regulatórias" },
+      { value: 5, label: "Preditivo", description: "Sistema avançado com análise preditiva e cenários municipais" }
     ]
   },
   {
     id: "risk2",
     pillarId: "risk",
-    text: "Qual o nível de preparação para continuidade de negócios e resposta a crises?",
-    context: "Mede a capacidade organizacional de manter operações durante eventos adversos.",
+    text: "Qual o nível de preparação para manter serviços essenciais durante crises?",
+    context: "Mede a capacidade de manter serviços públicos essenciais durante eventos adversos.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem planos de contingência ou preparação para crises" },
-      { value: 2, label: "Básico", description: "Alguns planos básicos para cenários mais óbvios" },
+      { value: 1, label: "Inexistente", description: "Sem planos de contingência para continuidade de serviços" },
+      { value: 2, label: "Básico", description: "Alguns planos básicos para serviços críticos" },
       { value: 3, label: "Estruturado", description: "Planos de continuidade documentados e testados ocasionalmente" },
       { value: 4, label: "Robusto", description: "Sistema maduro de continuidade com testes regulares" },
-      { value: 5, label: "Resiliente", description: "Organização altamente resiliente com capacidade adaptativa" }
+      { value: 5, label: "Resiliente", description: "Departamento altamente resiliente com capacidade adaptativa" }
     ]
   },
   {
     id: "risk3",
     pillarId: "risk",
-    text: "Como são implementadas e monitoradas as estratégias de mitigação de riscos?",
-    context: "Avalia se ações de mitigação são efetivamente implementadas e acompanhadas.",
+    text: "Como são gerenciados os riscos de imagem e credibilidade institucional?",
+    context: "Avalia gestão de riscos reputacionais junto à população e mídia.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem estratégias formais de mitigação" },
-      { value: 2, label: "Ad-hoc", description: "Ações de mitigação implementadas caso a caso" },
-      { value: 3, label: "Planejadas", description: "Estratégias definidas com implementação básica" },
-      { value: 4, label: "Sistemáticas", description: "Implementação sistemática com monitoramento regular" },
-      { value: 5, label: "Adaptativas", description: "Sistema dinâmico de mitigação com ajustes contínuos" }
+      { value: 1, label: "Inexistente", description: "Sem estratégias para proteção da imagem institucional" },
+      { value: 2, label: "Ad-hoc", description: "Ações reativas quando problemas de imagem surgem" },
+      { value: 3, label: "Planejadas", description: "Estratégias básicas de comunicação e transparência" },
+      { value: 4, label: "Sistemáticas", description: "Gestão proativa da reputação com monitoramento regular" },
+      { value: 5, label: "Adaptativas", description: "Sistema dinâmico de proteção e construção de credibilidade" }
     ]
   },
   {
     id: "risk4",
     pillarId: "risk",
-    text: "Qual o grau de integração da gestão de riscos com o planejamento estratégico?",
-    context: "Verifica se considerações de risco estão integradas ao processo de tomada de decisão estratégica.",
+    text: "Como são implementadas estratégias de mitigação adaptadas ao contexto municipal?",
+    context: "Verifica se estratégias de mitigação consideram especificidades públicas.",
     options: [
-      { value: 1, label: "Desconectado", description: "Gestão de riscos separada do planejamento estratégico" },
-      { value: 2, label: "Ocasional", description: "Riscos considerados esporadicamente nas decisões" },
-      { value: 3, label: "Incorporado", description: "Riscos regularmente considerados no planejamento" },
-      { value: 4, label: "Integrado", description: "Gestão de riscos totalmente integrada à estratégia" },
-      { value: 5, label: "Otimizado", description: "Decisões estratégicas otimizadas considerando perfil de risco" }
+      { value: 1, label: "Desconectado", description: "Estratégias genéricas sem consideração do contexto público" },
+      { value: 2, label: "Ocasional", description: "Mitigação considerada esporadicamente nas decisões" },
+      { value: 3, label: "Incorporado", description: "Mitigação regularmente considerada no planejamento" },
+      { value: 4, label: "Integrado", description: "Estratégias totalmente integradas ao contexto municipal" },
+      { value: 5, label: "Otimizado", description: "Mitigação otimizada considerando impacto no serviço público" }
     ]
   },
 
-  // Engajamento de Stakeholders e Comunicações
+  // Comunicação Interna e Engajamento de Stakeholders
   {
     id: "stake1",
     pillarId: "stakeholders",
-    text: "Como sua organização identifica e engaja stakeholders críticos?",
-    context: "Avalia se existe processo estruturado para mapear e engajar partes interessadas.",
+    text: "Como o departamento identifica e engaja gestores governamentais críticos?",
+    context: "Avalia se existe processo estruturado para mapear e engajar diferentes esferas de governo.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem mapeamento formal ou estratégia de engajamento" },
+      { value: 1, label: "Inexistente", description: "Sem mapeamento de stakeholders governamentais ou estratégia de engajamento" },
       { value: 2, label: "Básico", description: "Identificação básica com engajamento esporádico" },
-      { value: 3, label: "Estruturado", description: "Mapeamento sistemático com planos de engajamento" },
-      { value: 4, label: "Estratégico", description: "Gestão sofisticada de stakeholders com segmentação" },
-      { value: 5, label: "Dinâmico", description: "Eco-sistema de stakeholders auto-organizativo" }
+      { value: 3, label: "Estruturado", description: "Mapeamento sistemático com planos de engajamento intergovernamental" },
+      { value: 4, label: "Estratégico", description: "Gestão sofisticada considerando diferentes níveis de governo" },
+      { value: 5, label: "Dinâmico", description: "Rede de relacionamentos governamentais auto-organizativa" }
     ]
   },
   {
     id: "stake2",
     pillarId: "stakeholders",
-    text: "Qual a eficácia dos canais e processos de comunicação organizacional?",
-    context: "Mede se informações fluem adequadamente entre diferentes níveis e áreas da organização.",
+    text: "Qual a eficácia dos canais de comunicação entre departamentos e secretarias?",
+    context: "Mede se informações fluem adequadamente entre diferentes áreas do governo municipal.",
     options: [
-      { value: 1, label: "Deficiente", description: "Comunicação fragmentada com muitos ruídos e gaps" },
-      { value: 2, label: "Limitada", description: "Canais básicos com comunicação ocasional" },
-      { value: 3, label: "Adequada", description: "Canais estabelecidos com comunicação regular" },
+      { value: 1, label: "Deficiente", description: "Comunicação fragmentada entre departamentos com muitos gaps" },
+      { value: 2, label: "Limitada", description: "Canais básicos com comunicação ocasional entre setores" },
+      { value: 3, label: "Adequada", description: "Canais estabelecidos com comunicação regular intersetorial" },
       { value: 4, label: "Eficaz", description: "Sistema de comunicação maduro e multi-direcional" },
-      { value: 5, label: "Otimizada", description: "Comunicação inteligente e personalizada por stakeholder" }
+      { value: 5, label: "Otimizada", description: "Comunicação inteligente e integrada entre todas as secretarias" }
     ]
   },
   {
     id: "stake3",
     pillarId: "stakeholders",
-    text: "Como é gerenciado o feedback e as expectativas dos stakeholders?",
-    context: "Verifica se existe processo para capturar e responder ao feedback das partes interessadas.",
+    text: "Como são implementados processos de feedback e controle social cidadão?",
+    context: "Verifica se existe processo para capturar e responder ao feedback da população.",
     options: [
-      { value: 1, label: "Inexistente", description: "Sem mecanismos formais de feedback ou gestão de expectativas" },
-      { value: 2, label: "Reativo", description: "Feedback coletado apenas quando problemas surgem" },
+      { value: 1, label: "Inexistente", description: "Sem mecanismos formais de feedback cidadão" },
+      { value: 2, label: "Reativo", description: "Feedback coletado apenas quando reclamações surgem" },
       { value: 3, label: "Periódico", description: "Coleta regular de feedback com algumas ações de resposta" },
-      { value: 4, label: "Proativo", description: "Gestão ativa de expectativas com feedback loops estruturados" },
-      { value: 5, label: "Colaborativo", description: "Stakeholders co-criam soluções através de feedback contínuo" }
+      { value: 4, label: "Proativo", description: "Gestão ativa com ouvidoria e canais estruturados" },
+      { value: 5, label: "Colaborativo", description: "Cidadãos co-criam soluções através de feedback contínuo" }
     ]
   },
   {
     id: "stake4",
     pillarId: "stakeholders",
-    text: "Qual o nível de transparência e prestação de contas para stakeholders?",
-    context: "Avalia se a organização mantém transparência adequada e presta contas aos stakeholders.",
+    text: "Qual o nível de transparência ativa e comunicação acessível com órgãos de controle?",
+    context: "Avalia se o departamento mantém transparência adequada e presta contas proativamente.",
     options: [
-      { value: 1, label: "Opaca", description: "Pouca ou nenhuma transparência nas operações e decisões" },
-      { value: 2, label: "Limitada", description: "Transparência básica apenas quando solicitada" },
-      { value: 3, label: "Regular", description: "Relatórios periódicos e comunicações estruturadas" },
+      { value: 1, label: "Opaca", description: "Pouca transparência nas operações e decisões públicas" },
+      { value: 2, label: "Limitada", description: "Transparência básica apenas quando solicitada por órgãos" },
+      { value: 3, label: "Regular", description: "Relatórios periódicos e portais de transparência" },
       { value: 4, label: "Proativa", description: "Transparência proativa com múltiplos canais de informação" },
-      { value: 5, label: "Exemplar", description: "Transparência total com dashboards em tempo real" }
+      { value: 5, label: "Exemplar", description: "Transparência total com dados abertos em tempo real" }
     ]
   },
 
-  // Pessoas, Cultura e Competência
+  // Pessoas, Cultura de Serviço Público e Competências
   {
     id: "people1",
     pillarId: "people",
-    text: "Como sua organização desenvolve competências críticas para execução estratégica?",
-    context: "Verifica se existe programa estruturado de desenvolvimento de competências alinhado à estratégia.",
+    text: "Como o departamento desenvolve competências em gestão de projetos públicos?",
+    context: "Verifica se existe programa estruturado de capacitação em gestão pública.",
     options: [
-      { value: 1, label: "Ad-hoc", description: "Desenvolvimento esporádico sem alinhamento estratégico" },
-      { value: 2, label: "Básico", description: "Programas básicos de treinamento com foco técnico" },
-      { value: 3, label: "Estruturado", description: "Plano de desenvolvimento alinhado às necessidades organizacionais" },
-      { value: 4, label: "Estratégico", description: "Desenvolvimento integrado à estratégia com trilhas claras" },
-      { value: 5, label: "Adaptativo", description: "Sistema de desenvolvimento contínuo e personalizado" }
+      { value: 1, label: "Ad-hoc", description: "Desenvolvimento esporádico sem foco em gestão pública" },
+      { value: 2, label: "Básico", description: "Programas básicos de treinamento em administração pública" },
+      { value: 3, label: "Estruturado", description: "Plano de desenvolvimento alinhado às necessidades municipais" },
+      { value: 4, label: "Estratégico", description: "Desenvolvimento integrado com trilhas em gestão PPP" },
+      { value: 5, label: "Adaptativo", description: "Sistema de desenvolvimento contínuo em inovação pública" }
     ]
   },
   {
     id: "people2",
     pillarId: "people",
     text: "Qual o grau de colaboração e integração entre equipes e departamentos?",
-    context: "Mede se existem mecanismos efetivos para quebrar silos e promover colaboração.",
+    context: "Mede se existem mecanismos efetivos para quebrar silos departamentais.",
     options: [
-      { value: 1, label: "Silos", description: "Equipes trabalham isoladamente com pouca colaboração" },
+      { value: 1, label: "Silos", description: "Departamentos trabalham isoladamente com pouca colaboração" },
       { value: 2, label: "Ocasional", description: "Colaboração acontece esporadicamente quando necessário" },
-      { value: 3, label: "Estruturada", description: "Mecanismos formais de colaboração estabelecidos" },
+      { value: 3, label: "Estruturada", description: "Mecanismos formais de colaboração intersetorial estabelecidos" },
       { value: 4, label: "Integrada", description: "Cultura de colaboração com estruturas de suporte maduras" },
-      { value: 5, label: "Sinérgica", description: "Colaboração natural e auto-organizativa maximizando sinergia" }
+      { value: 5, label: "Sinérgica", description: "Colaboração natural maximizando sinergia entre secretarias" }
     ]
   },
   {
     id: "people3",
     pillarId: "people",
-    text: "Como é promovida a cultura de compartilhamento de conhecimento na organização?",
-    context: "Avalia se existem práticas e sistemas para capturar, organizar e compartilhar conhecimento organizacional.",
+    text: "Como é promovida a cultura de compartilhamento de conhecimento em gestão pública?",
+    context: "Avalia se existem práticas para capturar, organizar e compartilhar conhecimento público.",
     options: [
-      { value: 1, label: "Inexistente", description: "Conhecimento permanece com indivíduos sem compartilhamento" },
+      { value: 1, label: "Inexistente", description: "Conhecimento em gestão pública permanece individual" },
       { value: 2, label: "Informal", description: "Compartilhamento ocasional através de conversas informais" },
-      { value: 3, label: "Estruturado", description: "Sistemas básicos de gestão do conhecimento implementados" },
-      { value: 4, label: "Cultivado", description: "Cultura forte de compartilhamento com práticas estabelecidas" },
+      { value: 3, label: "Estruturado", description: "Sistemas básicos de gestão do conhecimento público" },
+      { value: 4, label: "Cultivado", description: "Cultura forte de compartilhamento com práticas de gestão pública" },
       { value: 5, label: "Inteligente", description: "Sistema inteligente de conhecimento com aprendizado contínuo" }
     ]
   },
   {
     id: "people4",
     pillarId: "people",
-    text: "Qual o nível de adaptabilidade cultural para mudanças e inovação?",
-    context: "Mede a capacidade cultural da organização para abraçar mudanças e fomentar inovação.",
+    text: "Qual o nível de adaptabilidade cultural para mudanças e inovação no serviço público?",
+    context: "Mede a capacidade cultural para abraçar mudanças e fomentar inovação em serviços públicos.",
     options: [
-      { value: 1, label: "Resistente", description: "Cultura resistente a mudanças com foco no status quo" },
-      { value: 2, label: "Cautelosa", description: "Mudanças aceitas com relutância e processo lento" },
-      { value: 3, label: "Receptiva", description: "Cultura aberta a mudanças quando bem justificadas" },
-      { value: 4, label: "Proativa", description: "Cultura que busca ativamente melhorias e inovação" },
-      { value: 5, label: "Transformadora", description: "Cultura de inovação contínua e adaptação natural" }
+      { value: 1, label: "Resistente", description: "Cultura resistente a mudanças com foco em manter processos" },
+      { value: 2, label: "Cautelosa", description: "Mudanças aceitas com relutância e processo burocrático lento" },
+      { value: 3, label: "Receptiva", description: "Cultura aberta a mudanças quando beneficiam cidadãos" },
+      { value: 4, label: "Proativa", description: "Cultura que busca ativamente melhorias no serviço público" },
+      { value: 5, label: "Transformadora", description: "Cultura de inovação contínua e foco no cidadão" }
     ]
   }
 ];
@@ -453,36 +453,36 @@ export const QUESTIONS: Question[] = [
 export const OSRL_LEVELS: OSRLLevel[] = [
   {
     level: 1,
-    name: "Inicial (Ad-hoc & Caótico)",
-    description: "Os processos são imprevisíveis, mal controlados e reativos. O sucesso depende inteiramente de esforços individuais heróicos, não de capacidades organizacionais.",
+    name: "Inicial (Ad-hoc & Caótico Municipal)",
+    description: "Processos administrativos inconsistentes e reativos. O sucesso depende inteiramente de conhecimento individual de servidores, não de capacidades departamentais.",
     characteristics: [
-      "Processos imprevisíveis e mal controlados",
-      "Sucesso depende de esforços individuais heróicos",
-      "Não consegue repetir sucessos consistentemente",
-      "Ausência de capacidades organizacionais estruturadas"
+      "Processos administrativos inconsistentes e mal controlados",
+      "Sucesso depende de conhecimento individual de servidores",
+      "Projetos públicos executados sem coordenação entre setores",
+      "Ausência de metodologias para gestão de obras e contratos"
     ],
     recommendations: [
-      "Iniciar documentação de processos básicos existentes",
-      "Identificar e mapear fluxos de trabalho críticos",
-      "Estabelecer métricas mínimas de controle",
-      "Criar estrutura básica de comunicação entre equipes"
+      "Documentar processos básicos de licitação e contratos",
+      "Mapear fluxos de trabalho críticos entre departamentos",
+      "Estabelecer controles mínimos de conformidade legal",
+      "Criar estrutura básica de comunicação intersetorial"
     ]
   },
   {
     level: 2,
-    name: "Consciente (Processos Fragmentados)",
-    description: "Existe uma consciência básica sobre a gestão de projetos, mas os processos são aplicados de forma inconsistente, geralmente dentro de silos funcionais.",
+    name: "Consciente (Fragmentação Departamental)",
+    description: "Existe consciência básica sobre gestão de projetos públicos, mas os processos são aplicados de forma inconsistente, geralmente dentro de silos departamentais.",
     characteristics: [
-      "Consciência básica sobre gestão de projetos",
-      "Processos aplicados inconsistentemente",
-      "Trabalho executado dentro de silos funcionais",
-      "Iniciativas executadas de maneira reativa"
+      "Consciência básica sobre gestão de projetos públicos",
+      "Iniciativas executadas em silos departamentais",
+      "Pouca integração entre secretarias e coordenações",
+      "Processos de aquisição básicos mas inconsistentes"
     ],
     recommendations: [
-      "Padronizar processos básicos de gestão de projetos",
-      "Quebrar silos funcionais com projetos transversais",
-      "Estabelecer vocabulário comum de gestão",
-      "Criar templates básicos para projetos similares"
+      "Padronizar processos básicos de gestão pública",
+      "Quebrar silos departamentais com projetos transversais",
+      "Estabelecer vocabulário comum de gestão municipal",
+      "Criar templates básicos para obras e consultorias"
     ]
   },
   {
