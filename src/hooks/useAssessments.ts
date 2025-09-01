@@ -4,7 +4,7 @@ import { toast } from '@/hooks/use-toast';
 
 export interface AssessmentData {
   id?: string;
-  user_id: string;
+  user_id?: string; // Made optional for anonymous assessments
   email: string;
   timestamp: string;
   osrl_level: number;
@@ -27,6 +27,7 @@ export const useAssessments = () => {
       const { data, error } = await supabase
         .from('osrl_assessments')
         .select('*')
+        .not('user_id', 'is', null) // Only load assessments with user_id (authenticated users)
         .order('created_at', { ascending: false });
 
       if (error) throw error;

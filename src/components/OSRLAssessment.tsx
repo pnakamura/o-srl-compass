@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -94,13 +94,6 @@ export const OSRLAssessment: React.FC = () => {
     }
   };
 
-  // Check authentication
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate('/auth');
-    }
-  }, [loading, isAuthenticated, navigate]);
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -110,10 +103,6 @@ export const OSRLAssessment: React.FC = () => {
         </div>
       </div>
     );
-  }
-
-  if (!isAuthenticated) {
-    return null;
   }
 
   if (currentStep === 'results') {
@@ -132,10 +121,44 @@ export const OSRLAssessment: React.FC = () => {
   }
 
   if (currentStep === 'history') {
+    if (!isAuthenticated) {
+      return (
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <Card>
+            <CardContent className="pt-6 text-center space-y-4">
+              <h2 className="text-xl font-semibold">Login Necessário</h2>
+              <p className="text-muted-foreground">
+                Você precisa estar logado para acessar o histórico de avaliações.
+              </p>
+              <Button onClick={() => navigate('/auth')} className="bg-gradient-primary">
+                Fazer Login
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
     return <AssessmentHistory onBack={backToIntro} />;
   }
 
   if (currentStep === 'supabase-history') {
+    if (!isAuthenticated) {
+      return (
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <Card>
+            <CardContent className="pt-6 text-center space-y-4">
+              <h2 className="text-xl font-semibold">Login Necessário</h2>
+              <p className="text-muted-foreground">
+                Você precisa estar logado para acessar o histórico online de avaliações.
+              </p>
+              <Button onClick={() => navigate('/auth')} className="bg-gradient-primary">
+                Fazer Login
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
     return <SupabaseHistory onBack={backToIntro} />;
   }
 
@@ -153,20 +176,22 @@ export const OSRLAssessment: React.FC = () => {
                   Avalie a maturidade do seu departamento em gestão de projetos e programas públicos complexos
                 </CardDescription>
               </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 self-start sm:self-auto">
-                <span className="text-xs sm:text-sm text-muted-foreground break-all">
-                  {user?.email}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleSignOut}
-                  className="flex items-center gap-2 text-xs sm:text-sm"
-                >
-                  <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Sair
-                </Button>
-              </div>
+              {isAuthenticated && (
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 self-start sm:self-auto">
+                  <span className="text-xs sm:text-sm text-muted-foreground break-all">
+                    {user?.email}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleSignOut}
+                    className="flex items-center gap-2 text-xs sm:text-sm"
+                  >
+                    <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
+                    Sair
+                  </Button>
+                </div>
+              )}
             </div>
           </CardHeader>
 
@@ -230,14 +255,27 @@ export const OSRLAssessment: React.FC = () => {
                 </Button>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button onClick={showHistory} variant="outline" className="flex-1">
-                  Ver Histórico Local
-                </Button>
-                <Button onClick={showSupabaseHistory} variant="outline" className="flex-1">
-                  Ver Histórico Online
-                </Button>
-              </div>
+              {!isAuthenticated && (
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Para acessar histórico, relatórios e exportação, faça login
+                  </p>
+                  <Button onClick={() => navigate('/auth')} variant="outline" size="sm">
+                    Fazer Login
+                  </Button>
+                </div>
+              )}
+              
+              {isAuthenticated && (
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button onClick={showHistory} variant="outline" className="flex-1">
+                    Ver Histórico Local
+                  </Button>
+                  <Button onClick={showSupabaseHistory} variant="outline" className="flex-1">
+                    Ver Histórico Online
+                  </Button>
+                </div>
+              )}
             </CardContent>
           )}
 

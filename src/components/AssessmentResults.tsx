@@ -359,7 +359,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
   };
 
 
-  // Auto-save to Supabase when component loads
+  // Auto-save to Supabase when component loads (only for authenticated users)
   useEffect(() => {
     const saveToSupabase = async () => {
       if (!user || hasSaved || isSaving) return;
@@ -703,8 +703,8 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
           </Button>
         </div>
 
-        {/* Save Status */}
-        {hasSaved && (
+        {/* Save Status for authenticated users */}
+        {user && hasSaved && (
           <Card className="shadow-medium border-success/20">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 text-success">
@@ -720,7 +720,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
           </Card>
         )}
 
-        {isSaving && (
+        {user && isSaving && (
           <Card className="shadow-medium border-primary/20">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
@@ -731,6 +731,29 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
                     Aguarde enquanto salvamos seus resultados
                   </p>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Login prompt for anonymous users */}
+        {!user && (
+          <Card className="shadow-medium border-primary/20">
+            <CardContent className="pt-6">
+              <div className="text-center space-y-4">
+                <div className="flex items-center justify-center gap-3">
+                  <Save className="w-6 h-6 text-primary" />
+                  <h3 className="font-medium text-lg">Quer salvar seus resultados?</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Faça login para salvar no histórico, comparar avaliações e acessar relatórios avançados
+                </p>
+                <Button 
+                  onClick={() => window.location.href = '/auth'} 
+                  className="bg-gradient-primary"
+                >
+                  Fazer Login e Salvar
+                </Button>
               </div>
             </CardContent>
           </Card>
