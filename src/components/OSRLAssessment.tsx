@@ -88,9 +88,12 @@ export const OSRLAssessment: React.FC = () => {
   const handleSignOut = async () => {
     try {
       await signOut();
+      // Always navigate to auth after signout attempt
       navigate('/auth');
     } catch (error) {
-      console.error('Error signing out:', error);
+      // Even if there's an error, navigate to auth page
+      console.warn('Logout completed with warnings:', error);
+      navigate('/auth');
     }
   };
 
