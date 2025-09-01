@@ -137,4 +137,35 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Improved text wrapping and mobile responsiveness */
+  .break-words {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .hyphens-auto {
+    hyphens: auto;
+  }
+  
+  /* Ensure buttons don't overflow on mobile */
+  .btn-responsive {
+    min-width: 0;
+    white-space: normal;
+    text-align: left;
+  }
+
+  /* Better mobile text handling */
+  @media (max-width: 640px) {
+    h1, h2, h3, h4, h5, h6 {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    p, span, div {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
 }

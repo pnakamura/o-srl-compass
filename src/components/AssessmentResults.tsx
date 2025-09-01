@@ -431,68 +431,68 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
   };
 
   return (
-    <div className="min-h-screen bg-gradient-secondary p-4">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-secondary p-2 sm:p-4">
+      <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8 px-1 sm:px-2">
         
         {/* Header */}
         <Card className="shadow-strong bg-gradient-hero text-white border-0">
-          <CardHeader className="text-center pb-8">
-            <div className="mx-auto mb-4 w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-              <Target className="w-8 h-8" />
+          <CardHeader className="text-center pb-6 sm:pb-8 px-4 sm:px-6">
+            <div className="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+              <Target className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <CardTitle className="text-3xl font-bold mb-2">
+            <CardTitle className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 break-words hyphens-auto">
               Seu Diagnóstico O-SRL
             </CardTitle>
-            <CardDescription className="text-white/90 text-lg">
+            <CardDescription className="text-white/90 text-sm sm:text-base md:text-lg break-words hyphens-auto leading-relaxed">
               Análise Completa de Maturidade Organizacional
             </CardDescription>
           </CardHeader>
         </Card>
 
         {/* Main Results Grid */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           
           {/* O-SRL Level Card */}
           <Card className="shadow-medium">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <ArrowUp className={`w-6 h-6 ${getLevelColor(osrlLevel)}`} />
-                Nível O-SRL Alcançado
+            <CardHeader className="px-4 sm:px-6">
+              <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl break-words hyphens-auto">
+                <ArrowUp className={`w-5 h-5 sm:w-6 sm:h-6 ${getLevelColor(osrlLevel)} flex-shrink-0 mt-1 sm:mt-0`} />
+                <span className="break-words hyphens-auto">Nível O-SRL Alcançado</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-4 mb-4">
+            <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
+              <div className="text-center space-y-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                   <Badge 
                     variant={getLevelBadgeVariant(osrlLevel)} 
-                    className="text-2xl px-6 py-3 font-bold"
+                    className="text-lg sm:text-2xl px-4 py-2 sm:px-6 sm:py-3 font-bold"
                   >
                     O-SRL {osrlLevel}
                   </Badge>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary">{overallScore}%</div>
-                    <div className="text-sm text-muted-foreground">Pontuação Geral</div>
+                  <div className="text-center sm:text-right">
+                    <div className="text-2xl sm:text-3xl font-bold text-primary">{overallScore}%</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">Pontuação Geral</div>
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                <h3 className="text-lg sm:text-xl font-semibold text-foreground break-words hyphens-auto">
                   {currentLevel?.name}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed break-words hyphens-auto">
                   {getPersonalizedDescription()}
                 </p>
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-medium text-foreground flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-success" />
-                  Características do Seu Nível
+                <h4 className="font-medium text-sm sm:text-base text-foreground flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-success flex-shrink-0" />
+                  <span className="break-words hyphens-auto">Características do Seu Nível</span>
                 </h4>
                 <ul className="space-y-2">
                   {currentLevel?.characteristics.map((characteristic, index) => (
-                    <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                      {characteristic}
+                    <li key={index} className="text-xs sm:text-sm text-muted-foreground flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 flex-shrink-0" />
+                      <span className="break-words hyphens-auto">{characteristic}</span>
                     </li>
                   ))}
                 </ul>
@@ -502,16 +502,16 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
 
           {/* Radar Chart */}
           <Card className="shadow-medium">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <Zap className="w-6 h-6 text-primary" />
-                Análise dos 7 Pilares
+            <CardHeader className="px-4 sm:px-6">
+              <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl break-words hyphens-auto">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-1 sm:mt-0" />
+                <span className="break-words hyphens-auto">Análise dos 7 Pilares</span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm break-words hyphens-auto">
                 Visão detalhada do desempenho por área de maturidade
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 sm:px-6">
               <RadarChart data={pillarScores} />
             </CardContent>
           </Card>
@@ -519,21 +519,23 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
 
         {/* Detailed Pillar Scores */}
         <Card className="shadow-medium">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <Shield className="w-6 h-6 text-primary" />
-              Pontuação Detalhada por Pilar
+          <CardHeader className="px-4 sm:px-6">
+            <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl break-words hyphens-auto">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-1 sm:mt-0" />
+              <span className="break-words hyphens-auto">Pontuação Detalhada por Pilar</span>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-4">
+          <CardContent className="px-4 sm:px-6">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
               {PILLARS.map((pillar) => {
                 const score = pillarScores[pillar.id] || 0;
                 return (
                   <div key={pillar.id} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-sm">{pillar.name}</span>
-                      <Badge variant="secondary">{score}%</Badge>
+                    <div className="flex justify-between items-start gap-2">
+                      <span className="font-medium text-xs sm:text-sm break-words hyphens-auto flex-1">
+                        {pillar.name}
+                      </span>
+                      <Badge variant="secondary" className="flex-shrink-0">{score}%</Badge>
                     </div>
                     <Progress value={score} className="h-2" />
                   </div>
@@ -544,29 +546,33 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
         </Card>
 
         {/* Strengths and Improvements */}
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           
           {/* Strengths */}
           <Card className="shadow-medium border-success/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-success">
-                <CheckCircle2 className="w-6 h-6" />
-                Pontos Fortes
+            <CardHeader className="px-4 sm:px-6">
+              <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl text-success break-words hyphens-auto">
+                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-1 sm:mt-0" />
+                <span className="break-words hyphens-auto">Pontos Fortes</span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm break-words hyphens-auto">
                 Áreas onde sua organização demonstra maior maturidade
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 px-4 sm:px-6">
               {strengths.map((pillar) => (
-                <div key={pillar.id} className="p-4 bg-success/5 rounded-lg border border-success/20">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-medium text-success">{pillar.name}</h4>
-                    <Badge variant="secondary" className="bg-success/10 text-success">
+                <div key={pillar.id} className="p-3 sm:p-4 bg-success/5 rounded-lg border border-success/20">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+                    <h4 className="font-medium text-sm sm:text-base text-success break-words hyphens-auto flex-1">
+                      {pillar.name}
+                    </h4>
+                    <Badge variant="secondary" className="bg-success/10 text-success flex-shrink-0">
                       {pillar.score}%
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pillar.specificStrength}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground break-words hyphens-auto leading-relaxed">
+                    {pillar.specificStrength}
+                  </p>
                 </div>
               ))}
             </CardContent>
@@ -574,25 +580,29 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
 
           {/* Improvements */}
           <Card className="shadow-medium border-warning/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-xl text-warning">
-                <AlertCircle className="w-6 h-6" />
-                Oportunidades de Melhoria
+            <CardHeader className="px-4 sm:px-6">
+              <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl text-warning break-words hyphens-auto">
+                <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 mt-1 sm:mt-0" />
+                <span className="break-words hyphens-auto">Oportunidades de Melhoria</span>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-sm break-words hyphens-auto">
                 Áreas prioritárias para desenvolvimento e crescimento
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 px-4 sm:px-6">
               {improvements.map((pillar) => (
-                <div key={pillar.id} className="p-4 bg-warning/5 rounded-lg border border-warning/20">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-medium text-warning">{pillar.name}</h4>
-                    <Badge variant="secondary" className="bg-warning/10 text-warning">
+                <div key={pillar.id} className="p-3 sm:p-4 bg-warning/5 rounded-lg border border-warning/20">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+                    <h4 className="font-medium text-sm sm:text-base text-warning break-words hyphens-auto flex-1">
+                      {pillar.name}
+                    </h4>
+                    <Badge variant="secondary" className="bg-warning/10 text-warning flex-shrink-0">
                       {pillar.score}%
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{pillar.specificImprovement}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground break-words hyphens-auto leading-relaxed">
+                    {pillar.specificImprovement}
+                  </p>
                 </div>
               ))}
             </CardContent>
@@ -601,38 +611,46 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
 
         {/* Recommendations */}
         <Card className="shadow-medium">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <TrendingUp className="w-6 h-6 text-primary" />
-              Próximos Passos Recomendados
+          <CardHeader className="px-4 sm:px-6">
+            <CardTitle className="flex items-start sm:items-center gap-2 text-lg sm:text-xl break-words hyphens-auto">
+              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-1 sm:mt-0" />
+              <span className="break-words hyphens-auto">Próximos Passos Recomendados</span>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm break-words hyphens-auto">
               Ações estratégicas para evoluir para o próximo nível de maturidade
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
+          <CardContent className="px-4 sm:px-6">
+            <div className="grid lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
               <div className="space-y-4">
-                <h4 className="font-medium text-foreground">Recomendações Específicas:</h4>
+                <h4 className="font-medium text-sm sm:text-base text-foreground break-words hyphens-auto">
+                  Recomendações Específicas:
+                </h4>
                 <ul className="space-y-3">
                   {getRecommendationsByLevel(osrlLevel).map((recommendation, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <li key={index} className="flex items-start gap-2 sm:gap-3">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-xs font-semibold text-primary">{index + 1}</span>
                       </div>
-                      <span className="text-sm text-muted-foreground">{recommendation}</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground break-words hyphens-auto">
+                        {recommendation}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
               
               <div className="space-y-4">
-                <h4 className="font-medium text-foreground">Recomendações do Framework:</h4>
+                <h4 className="font-medium text-sm sm:text-base text-foreground break-words hyphens-auto">
+                  Recomendações do Framework:
+                </h4>
                 <ul className="space-y-3">
                   {currentLevel?.recommendations.map((recommendation, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                      <span className="text-sm text-muted-foreground">{recommendation}</span>
+                    <li key={index} className="flex items-start gap-2 sm:gap-3">
+                      <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-primary mt-1 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-muted-foreground break-words hyphens-auto">
+                        {recommendation}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -642,17 +660,17 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
         </Card>
 
         {/* Advanced Insights Section */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <Card>
-            <CardHeader>
-              <CardTitle className="text-center text-2xl">
+            <CardHeader className="px-4 sm:px-6">
+              <CardTitle className="text-center text-lg sm:text-xl md:text-2xl break-words hyphens-auto">
                 Análise Avançada e Insights Inteligentes
               </CardTitle>
-              <CardDescription className="text-center">
+              <CardDescription className="text-center text-sm break-words hyphens-auto">
                 Diagnóstico profundo com recomendações baseadas em análise preditiva
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 sm:px-6">
               <AdvancedInsights analysisResult={advancedAnalysis} />
             </CardContent>
           </Card>
@@ -665,22 +683,22 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-0">
           <Button 
             size="lg" 
             onClick={handleDownloadReport}
-            className="bg-gradient-primary hover:shadow-medium transition-all duration-300 px-8"
+            className="bg-gradient-primary hover:shadow-medium transition-all duration-300 px-6 sm:px-8 text-sm sm:text-base"
           >
-            <Download className="mr-2 h-5 w-5" />
+            <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
             Baixar Relatório Completo
           </Button>
           <Button 
             size="lg" 
             variant="outline" 
             onClick={onReset}
-            className="px-8"
+            className="px-6 sm:px-8 text-sm sm:text-base"
           >
-            <RotateCcw className="mr-2 h-5 w-5" />
+            <RotateCcw className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
             Nova Avaliação
           </Button>
         </div>

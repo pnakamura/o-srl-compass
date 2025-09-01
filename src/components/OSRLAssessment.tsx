@@ -140,30 +140,30 @@ export const OSRLAssessment: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 max-w-4xl min-h-screen">
       <TooltipProvider>
         <Card className="mb-8">
-          <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950">
-            <div className="flex justify-between items-start mb-4">
-              <div className="flex-1">
-                <CardTitle className="text-3xl font-bold mb-2">
+          <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 px-3 sm:px-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+              <div className="flex-1 text-left sm:text-center">
+                <CardTitle className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 break-words hyphens-auto">
                   Diagnóstico O-SRL Municipal
                 </CardTitle>
-                <CardDescription className="text-lg">
+                <CardDescription className="text-sm sm:text-base md:text-lg break-words hyphens-auto leading-relaxed">
                   Avalie a maturidade do seu departamento em gestão de projetos e programas públicos complexos
                 </CardDescription>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 self-start sm:self-auto">
+                <span className="text-xs sm:text-sm text-muted-foreground break-all">
                   {user?.email}
                 </span>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleSignOut}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 text-xs sm:text-sm"
                 >
-                  <LogOut className="h-4 w-4" />
+                  <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
                   Sair
                 </Button>
               </div>
@@ -173,28 +173,52 @@ export const OSRLAssessment: React.FC = () => {
           {currentStep === 'intro' && (
             <CardContent className="space-y-6 pt-6">
               <div className="text-center space-y-4">
-                <p className="text-lg text-muted-foreground">
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground break-words hyphens-auto leading-relaxed">
                   Esta avaliação mede a maturidade do seu departamento em gestão de projetos e programas públicos complexos.
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-6 text-left">
-                  <div>
-                    <h3 className="font-semibold mb-3">O que você receberá:</h3>
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-left">
+                  <div className="space-y-3">
+                    <h3 className="font-semibold mb-3 text-base sm:text-lg">O que você receberá:</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• Nível de maturidade organizacional (1-5)</li>
-                      <li>• Análise detalhada por pilares</li>
-                      <li>• Recomendações personalizadas</li>
-                      <li>• Relatório completo para download</li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Nível de maturidade organizacional (1-9)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Análise detalhada por pilares</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Recomendações personalizadas</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Relatório completo para download</span>
+                      </li>
                     </ul>
                   </div>
                   
-                  <div>
-                    <h3 className="font-semibold mb-3">Sobre a avaliação:</h3>
+                  <div className="space-y-3">
+                    <h3 className="font-semibold mb-3 text-base sm:text-lg">Sobre a avaliação:</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• {totalQuestions} perguntas estratégicas</li>
-                      <li>• {PILLARS.length} pilares de maturidade</li>
-                      <li>• Aproximadamente 15 minutos</li>
-                      <li>• Completamente confidencial</li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">{totalQuestions} perguntas estratégicas</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">{PILLARS.length} pilares de maturidade</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Aproximadamente 15 minutos</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span className="break-words hyphens-auto">Completamente confidencial</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -231,14 +255,16 @@ export const OSRLAssessment: React.FC = () => {
 
                 {/* Current Pillar Info */}
                 {currentQuestion === 0 && (
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h3 className="font-semibold text-lg mb-2">
-                      {currentPillarData.name} 
-                      <Badge variant="secondary" className="ml-2">
+                  <div className="bg-muted/50 p-3 sm:p-4 rounded-lg space-y-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                      <h3 className="font-semibold text-base sm:text-lg break-words hyphens-auto flex-1">
+                        {currentPillarData.name}
+                      </h3>
+                      <Badge variant="secondary" className="self-start sm:self-center">
                         Pilar {currentPillar + 1}
                       </Badge>
-                    </h3>
-                    <p className="text-muted-foreground">
+                    </div>
+                    <p className="text-sm sm:text-base text-muted-foreground break-words hyphens-auto leading-relaxed">
                       {currentPillarData.description}
                     </p>
                   </div>
@@ -246,17 +272,17 @@ export const OSRLAssessment: React.FC = () => {
 
                 {/* Question */}
                 <div className="space-y-4">
-                  <div className="flex items-start gap-2">
-                    <h2 className="text-xl font-semibold leading-relaxed flex-1">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <h2 className="text-lg sm:text-xl font-semibold leading-relaxed flex-1 break-words hyphens-auto">
                       {currentQuestionData?.text}
                     </h2>
                      {currentQuestionData?.context && (
                        <Tooltip>
-                         <TooltipTrigger>
-                           <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs">?</div>
+                         <TooltipTrigger className="flex-shrink-0 mt-1">
+                           <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs hover:bg-muted/80 transition-colors">?</div>
                          </TooltipTrigger>
-                         <TooltipContent side="left" className="max-w-sm">
-                           <p>{currentQuestionData.context}</p>
+                         <TooltipContent side="left" className="max-w-xs sm:max-w-sm">
+                           <p className="text-sm break-words">{currentQuestionData.context}</p>
                          </TooltipContent>
                        </Tooltip>
                      )}
@@ -270,18 +296,20 @@ export const OSRLAssessment: React.FC = () => {
                         <Button
                           key={option.value}
                           variant={isSelected ? "default" : "outline"}
-                          className="w-full text-left p-4 h-auto justify-start"
+                          className="w-full text-left p-3 sm:p-4 h-auto justify-start whitespace-normal"
                           onClick={() => handleResponse(currentQuestionData.id, option.value)}
                         >
-                          <div className="space-y-1">
-                            <div className="flex items-center gap-2">
-                              <Badge variant={isSelected ? "secondary" : "outline"}>
+                          <div className="space-y-2 w-full">
+                            <div className="flex items-start gap-2 sm:gap-3">
+                              <Badge variant={isSelected ? "secondary" : "outline"} className="flex-shrink-0 mt-0.5">
                                 {option.value}
                               </Badge>
-                              <span className="font-medium">{option.label}</span>
+                              <span className="font-medium text-sm sm:text-base break-words hyphens-auto flex-1">
+                                {option.label}
+                              </span>
                             </div>
                             {option.description && (
-                              <p className="text-sm text-muted-foreground">
+                              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed break-words hyphens-auto pl-8 sm:pl-10">
                                 {option.description}
                               </p>
                             )}
