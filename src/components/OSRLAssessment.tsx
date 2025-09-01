@@ -10,7 +10,7 @@ import { AssessmentResults } from './AssessmentResults';
 import { AssessmentHistory } from './AssessmentHistory';
 import SupabaseHistory from './SupabaseHistory';
 import { useAuth } from '@/hooks/useAuth';
-import { LogOut } from 'lucide-react';
+import { LogOut, ArrowLeft } from 'lucide-react';
 
 type Step = 'intro' | 'assessment' | 'results' | 'history' | 'supabase-history';
 
@@ -132,7 +132,7 @@ export const OSRLAssessment: React.FC = () => {
   }
 
   if (currentStep === 'history') {
-    return <AssessmentHistory />;
+    return <AssessmentHistory onBack={backToIntro} />;
   }
 
   if (currentStep === 'supabase-history') {
@@ -320,16 +320,31 @@ export const OSRLAssessment: React.FC = () => {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex justify-between pt-4">
-                    <Button
-                      variant="outline"
-                      onClick={goToPreviousQuestion}
-                      disabled={currentPillar === 0 && currentQuestion === 0}
-                    >
-                      Anterior
-                    </Button>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pt-4">
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={goToPreviousQuestion}
+                        disabled={currentPillar === 0 && currentQuestion === 0}
+                        className="flex items-center gap-2"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                        Anterior
+                      </Button>
+                      
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={backToIntro}
+                        className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                      >
+                        <ArrowLeft className="w-4 h-4" />
+                        Voltar ao Início
+                      </Button>
+                    </div>
                     
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-xs sm:text-sm text-muted-foreground">
                       {answeredQuestions > 0 && (
                         <span>{answeredQuestions} de {totalQuestions} respondidas</span>
                       )}

@@ -7,7 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { useAssessments, AssessmentData } from '@/hooks/useAssessments';
 import { formatDate } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Download, Eye, Trash2, RefreshCw } from 'lucide-react';
+import { Download, Eye, Trash2, RefreshCw, ArrowLeft } from 'lucide-react';
 
 interface SupabaseHistoryProps {
   onBack: () => void;
@@ -53,7 +53,7 @@ const SupabaseHistory: React.FC<SupabaseHistoryProps> = ({ onBack }) => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <div className="flex items-center justify-center h-64">
           <RefreshCw className="h-8 w-8 animate-spin text-primary" />
           <span className="ml-2">Carregando histórico...</span>
@@ -64,11 +64,12 @@ const SupabaseHistory: React.FC<SupabaseHistoryProps> = ({ onBack }) => {
 
   if (assessments.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold">Histórico de Avaliações</h1>
-          <Button onClick={onBack} variant="outline">
-            Voltar
+          <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Voltar ao Início
           </Button>
         </div>
         
@@ -89,16 +90,17 @@ const SupabaseHistory: React.FC<SupabaseHistoryProps> = ({ onBack }) => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Histórico de Avaliações</h1>
+    <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold break-words hyphens-auto">Histórico de Avaliações</h1>
         <div className="flex gap-2">
-          <Button onClick={loadAssessments} variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
+          <Button onClick={loadAssessments} variant="outline" size="sm" className="flex items-center gap-2">
+            <RefreshCw className="h-4 w-4" />
             Atualizar
           </Button>
-          <Button onClick={onBack} variant="outline">
-            Voltar
+          <Button onClick={onBack} variant="outline" className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Voltar ao Início
           </Button>
         </div>
       </div>

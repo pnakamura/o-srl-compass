@@ -699,7 +699,7 @@ export function AssessmentResults({ osrlLevel, pillarScores, responses, onReset,
             className="px-6 sm:px-8 text-sm sm:text-base"
           >
             <RotateCcw className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-            Nova Avaliação
+            Voltar ao Início
           </Button>
         </div>
 

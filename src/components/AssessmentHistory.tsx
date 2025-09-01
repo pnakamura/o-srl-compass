@@ -10,7 +10,8 @@ import {
   User,
   Download,
   Trash2,
-  Eye
+  Eye,
+  ArrowLeft
 } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
@@ -26,7 +27,11 @@ interface AssessmentData {
   personalizedAnalysis: any;
 }
 
-export function AssessmentHistory() {
+interface AssessmentHistoryProps {
+  onBack?: () => void;
+}
+
+export function AssessmentHistory({ onBack }: AssessmentHistoryProps) {
   const { toast } = useToast();
   const [assessments, setAssessments] = useState<AssessmentData[]>([]);
   const [selectedAssessment, setSelectedAssessment] = useState<AssessmentData | null>(null);
@@ -93,20 +98,46 @@ export function AssessmentHistory() {
 
   if (assessments.length === 0) {
     return (
-      <Card className="shadow-medium">
-        <CardContent className="text-center py-8">
-          <History className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-foreground mb-2">Nenhuma Avaliação Encontrada</h3>
-          <p className="text-muted-foreground">
-            Complete uma avaliação e envie os dados para ver o histórico aqui.
-          </p>
-        </CardContent>
-      </Card>
+      <div className="space-y-6">
+        {/* Back Button */}
+        {onBack && (
+          <Button 
+            variant="outline" 
+            onClick={onBack}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Voltar ao Início
+          </Button>
+        )}
+        
+        <Card className="shadow-medium">
+          <CardContent className="text-center py-8">
+            <History className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">Nenhuma Avaliação Encontrada</h3>
+            <p className="text-muted-foreground">
+              Complete uma avaliação e envie os dados para ver o histórico aqui.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      {/* Back Button */}
+      {onBack && (
+        <Button 
+          variant="outline" 
+          onClick={onBack}
+          className="flex items-center gap-2"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Voltar ao Início
+        </Button>
+      )}
+      
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-foreground">Histórico de Avaliações</h2>
