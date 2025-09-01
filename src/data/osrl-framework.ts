@@ -453,97 +453,173 @@ export const QUESTIONS: Question[] = [
 export const OSRL_LEVELS: OSRLLevel[] = [
   {
     level: 1,
-    name: "Inicial - Caótico",
-    description: "Nível básico onde projetos são executados de forma ad-hoc e não estruturada",
+    name: "Inicial (Ad-hoc & Caótico)",
+    description: "Os processos são imprevisíveis, mal controlados e reativos. O sucesso depende inteiramente de esforços individuais heróicos, não de capacidades organizacionais. A organização não consegue repetir sucessos de forma consistente.",
     characteristics: [
-      "Processos inconsistentes e não documentados",
-      "Sucesso dependente de esforços individuais heroicos",
-      "Falta de padronização e metodologias",
-      "Baixa previsibilidade de resultados",
-      "Comunicação informal e irregular"
+      "Processos imprevisíveis e mal controlados",
+      "Sucesso baseado em esforços individuais heróicos",
+      "Falta de capacidades organizacionais estruturadas",
+      "Incapacidade de repetir sucessos consistentemente",
+      "Abordagem reativa aos problemas e desafios"
     ],
     recommendations: [
-      "Implementar processos básicos de gestão de projetos",
-      "Documentar metodologias simples e templates",
-      "Estabelecer comunicação regular com stakeholders",
-      "Criar estrutura básica de governança",
+      "Estabelecer processos básicos de gestão de projetos",
+      "Documentar procedimentos mínimos essenciais",
+      "Definir responsabilidades e papéis básicos",
+      "Criar comunicação estruturada inicial",
       "Investir em treinamento fundamental"
     ]
   },
   {
     level: 2,
-    name: "Repetível - Disciplinado",
-    description: "Processos básicos estabelecidos com alguma repetibilidade",
+    name: "Consciente (Processos Fragmentados)",
+    description: "Existe uma consciência básica sobre a gestão de projetos, mas os processos são aplicados de forma inconsistente, geralmente dentro de silos funcionais. Não há um padrão organizacional, e as iniciativas são executadas de maneira reativa.",
     characteristics: [
-      "Processos básicos implementados e seguidos",
-      "Metodologias simples documentadas",
-      "Planejamento e controle básicos",
-      "Comunicação estruturada",
-      "Lições aprendidas capturadas ocasionalmente"
+      "Consciência básica sobre gestão de projetos",
+      "Processos aplicados inconsistentemente",
+      "Trabalho em silos funcionais",
+      "Ausência de padrão organizacional",
+      "Execução reativa de iniciativas"
     ],
     recommendations: [
-      "Padronizar processos em toda organização",
-      "Implementar ferramentas de monitoramento",
-      "Desenvolver competências em gestão de projetos",
-      "Estabelecer métricas básicas de desempenho",
-      "Criar repositório de lições aprendidas"
+      "Desenvolver metodologia básica padronizada",
+      "Quebrar silos através de comunicação integrada",
+      "Estabelecer padrões organizacionais mínimos",
+      "Implementar planejamento proativo básico",
+      "Criar visibilidade entre áreas funcionais"
     ]
   },
   {
     level: 3,
-    name: "Definido - Padronizado",
-    description: "Processos padronizados e bem definidos organizacionalmente",
+    name: "Estruturado (Processos Repetíveis)",
+    description: "Poucos processos centrais de gestão de projetos são documentados e podem ser repetidos no nível do projeto. Existe um acompanhamento básico de custo e cronograma. O sucesso em projetos semelhantes pode ser repetido, mas é incerto.",
     characteristics: [
-      "Metodologias padronizadas e documentadas",
-      "Processos integrados entre áreas",
-      "Treinamento e desenvolvimento sistemático",
-      "Métricas e monitoramento estabelecidos",
-      "Gestão de portfólio básica"
+      "Processos centrais documentados e repetíveis",
+      "Acompanhamento básico de custo e cronograma",
+      "Capacidade de repetir sucessos em projetos similares",
+      "Resultados ainda incertos e variáveis",
+      "Controles básicos implementados"
     ],
     recommendations: [
-      "Implementar gestão de portfólio robusta",
-      "Desenvolver cultura orientada a projetos",
-      "Estabelecer centros de excelência",
-      "Implementar ferramentas integradas",
-      "Focar em gestão de benefícios"
+      "Expandir processos para toda organização",
+      "Incluir gestão de escopo e qualidade",
+      "Desenvolver metodologias mais robustas",
+      "Implementar métricas de desempenho",
+      "Estabelecer gestão de riscos básica"
     ]
   },
   {
     level: 4,
-    name: "Gerenciado - Quantitativo",
-    description: "Processos controlados quantitativamente com métricas claras",
+    name: "Definido (Processos Padronizados)",
+    description: "Um conjunto de processos padrão para toda a organização é definido e disponibilizado para uso em todos os projetos. A organização adota uma postura mais proativa do que reativa, com processos bem caracterizados e compreendidos.",
     characteristics: [
-      "Processos controlados estatisticamente",
-      "Métricas e KPIs bem estabelecidos",
-      "Gestão de portfólio madura",
-      "Análise preditiva básica",
-      "Gestão de benefícios sistemática"
+      "Processos padrão organizacionais definidos",
+      "Disponibilidade para uso em todos os projetos",
+      "Postura proativa predominante",
+      "Processos bem caracterizados e compreendidos",
+      "Metodologia unificada implementada"
     ],
     recommendations: [
-      "Implementar análise preditiva avançada",
-      "Desenvolver capacidades de inovação",
-      "Estabelecer benchmarking externo",
-      "Focar em otimização de valor",
-      "Criar cultura de melhoria contínua"
+      "Integrar com outras funções corporativas",
+      "Desenvolver visão de portfólio",
+      "Implementar gestão de benefícios",
+      "Estabelecer métricas avançadas",
+      "Criar centros de excelência"
     ]
   },
   {
     level: 5,
-    name: "Otimizado - Adaptativo",
-    description: "Melhoria contínua e otimização baseada em dados e feedback",
+    name: "Integrado (Processos Institucionalizados)",
+    description: "Os processos padrão são totalmente institucionalizados e integrados com outras funções corporativas (ex: finanças, RH). Uma visão de portfólio começa a emergir, permitindo um alinhamento mais amplo dos projetos com a estratégia.",
     characteristics: [
-      "Melhoria contínua sistemática",
-      "Adaptação rápida a mudanças",
-      "Inovação em processos e métodos",
-      "Benchmarking e melhores práticas",
-      "Cultura de excelência estabelecida"
+      "Processos completamente institucionalizados",
+      "Integração com funções corporativas (finanças, RH)",
+      "Visão de portfólio emergente",
+      "Alinhamento amplo com estratégia organizacional",
+      "Governança integrada estabelecida"
     ],
     recommendations: [
-      "Manter liderança em melhores práticas",
-      "Desenvolver capacidades de transformação",
-      "Estabelecer parcerias estratégicas",
-      "Focar em sustentabilidade organizacional",
-      "Compartilhar conhecimento externamente"
+      "Implementar coleta de dados quantitativos",
+      "Desenvolver análise de desempenho avançada",
+      "Estabelecer decisões baseadas em dados",
+      "Criar objetivos quantitativos de qualidade",
+      "Implementar gestão de valor sistemática"
+    ]
+  },
+  {
+    level: 6,
+    name: "Gerenciado (Medido Quantitativamente)",
+    description: "A organização coleta e utiliza dados quantitativos para gerenciar o desempenho e a qualidade dos projetos. As decisões são cada vez mais baseadas em dados, e há objetivos quantitativos para a qualidade e o desempenho dos processos.",
+    characteristics: [
+      "Coleta e uso de dados quantitativos",
+      "Gestão baseada em métricas de desempenho",
+      "Decisões fundamentadas em dados",
+      "Objetivos quantitativos de qualidade",
+      "Controle estatístico de processos"
+    ],
+    recommendations: [
+      "Implementar técnicas estatísticas avançadas",
+      "Desenvolver capacidades preditivas",
+      "Estabelecer modelos de previsão",
+      "Criar análise de tendências",
+      "Implementar controle quantitativo robusto"
+    ]
+  },
+  {
+    level: 7,
+    name: "Preditivo (Controlado Quantitativamente)",
+    description: "Técnicas estatísticas e quantitativas são usadas para controlar processos e prever resultados de desempenho. A organização pode prever de forma confiável os resultados dos projetos com base em dados históricos e modelos estatísticos.",
+    characteristics: [
+      "Uso de técnicas estatísticas e quantitativas",
+      "Controle preditivo de processos",
+      "Previsão confiável de resultados",
+      "Modelos estatísticos estabelecidos",
+      "Análise preditiva sistemática"
+    ],
+    recommendations: [
+      "Focar em melhoria contínua de processos",
+      "Identificar causas de variação",
+      "Implementar inovação em processos",
+      "Estabelecer cultura de excelência",
+      "Desenvolver capacidades de otimização"
+    ]
+  },
+  {
+    level: 8,
+    name: "Otimizado (Melhoria Contínua)",
+    description: "A organização está focada na melhoria contínua dos processos, identificando e abordando as causas comuns de variação e desvio de desempenho. A inovação em processos é incentivada e gerenciada.",
+    characteristics: [
+      "Foco na melhoria contínua sistemática",
+      "Identificação de causas de variação",
+      "Abordagem proativa aos desvios",
+      "Inovação em processos incentivada",
+      "Gestão ativa da melhoria"
+    ],
+    recommendations: [
+      "Desenvolver agilidade estratégica",
+      "Implementar capacidade de adaptação rápida",
+      "Estabelecer integração estratégia-execução",
+      "Criar plataforma para inovação",
+      "Desenvolver resposta eficaz a mudanças"
+    ]
+  },
+  {
+    level: 9,
+    name: "Adaptativo (Agilidade Estratégica)",
+    description: "Os processos estáveis e otimizados da organização fornecem uma plataforma para agilidade e inovação estratégica. A organização pode pivotar e responder a oportunidades e ameaças de forma eficaz, integrando perfeitamente a estratégia e a execução.",
+    characteristics: [
+      "Processos estáveis como plataforma de agilidade",
+      "Inovação estratégica sistemática",
+      "Capacidade de pivot eficaz",
+      "Resposta ágil a oportunidades e ameaças",
+      "Integração perfeita estratégia-execução"
+    ],
+    recommendations: [
+      "Manter excelência e liderança no setor",
+      "Compartilhar melhores práticas externamente",
+      "Desenvolver ecossistema de inovação",
+      "Estabelecer benchmarks para o mercado",
+      "Cultivar cultura de transformação contínua"
     ]
   }
 ];
@@ -553,7 +629,17 @@ export function calculateOSRLLevel(responses: Record<string, number>): number {
   if (scores.length === 0) return 1;
   
   const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
-  return Math.ceil(average);
+  
+  // Map 1-5 scale to 1-9 O-SRL levels
+  if (average <= 1.2) return 1;
+  if (average <= 1.5) return 2;
+  if (average <= 2.2) return 3;
+  if (average <= 2.8) return 4;
+  if (average <= 3.2) return 5;
+  if (average <= 3.8) return 6;
+  if (average <= 4.2) return 7;
+  if (average <= 4.6) return 8;
+  return 9;
 }
 
 export function calculatePillarScores(responses: Record<string, number>): Record<string, number> {
